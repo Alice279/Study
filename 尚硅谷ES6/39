@@ -29,7 +29,45 @@
 -------
 ES6模块化
 
+模块功能主要由两个命令构成：export和import
 
+* 暴露数据：
+
+export 用于规定模块的对外接口
+
+分别暴露 分别export；统一暴露 放在大括号里统一export；默认暴露 export default
+
+* 引入模块
+
+import 用于输入其他模块提供的功能
+
+1.通用的导入方式 import * as xxx from "./xx/xx"
+
+2.解构赋值形式
+
+import {xxx, xxx} from "./xx/xx"
+
+import {xxx as xxx, xxx} from "./xx/xx"
+
+import {default as xxx} from "./xx/xx"
+
+3.简便形式 针对默认暴露
+
+import xxx from "./xx/xx"
+
+模块的引入也可以单独写一个文件，然后在script文件里引入，只不过type="module"
+
+-------
+bable的使用
+
+1.安装工具 bable -cli bable-preset-env browserify(webpack)
+
+2.npx babel src/js -d dist/js
+
+3.打包 npx browserify dist/js/app.js -o dist/bundle.js
+
+ ES
+3.打包 npx browserify dist/js/app.js -o dist/bundle.js
 
 
 
