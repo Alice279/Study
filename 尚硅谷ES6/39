@@ -1,0 +1,60 @@
+-------
+数值扩展
+
+1.Number.EPSILON JavaScript表示的最小精度
+
+2.二进制 0b ； 八进制 0o ； 十六进制 0x
+
+3.Number.isFinite 检测一个数值是否为有限数
+
+4.Number.siNaN 检测一个数值是否是NaN
+
+5.Number.parseInt Number.parseFloat 字符串转整数
+
+6.Number.isInteger 判断一个数是否为整数
+
+7.Math.trunc 将数字的小数部分抹掉
+
+8.Math.sign 判断一个数到底为正数，负数还是零
+
+-------
+对象扩展
+
+1.Object.is 判断两个值是否完全相等，类似于 === 不同在于 Object.is(NaN, NaN) 返回true
+
+2.Object.assign 对象的合并，如果出现重名，后面的把前面的覆盖
+
+3.Object.setPrototypeof Object.getPrototypeof
+
+-------
+ES6模块化
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
