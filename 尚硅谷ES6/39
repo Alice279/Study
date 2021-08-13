@@ -66,10 +66,7 @@ bable的使用
 
 3.打包 npx browserify dist/js/app.js -o dist/bundle.js
 
- ES
-3.打包 npx browserify dist/js/app.js -o dist/bundle.js
-
-
+ES6模块化引入NPM包
 
 
 
