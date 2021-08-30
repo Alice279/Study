@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //模拟获取 用户数据 订单数据 商品数据
+        function getUsers(){
+            setTimeout(()=>{
+                let data = '用户数据'
+                xy.next(data)
+            },1000)
+             //next里面放参数的意义就是把上一个回调获取的值，在yield里得到
+        }
+        function getOrderers(){
+            setTimeout(()=>{
+                let data = '订单数据'
+                xy.next(data)
+            },1000)
+           
+        }
+        function getGoods(){
+            setTimeout(()=>{
+                let data = '商品数据'
+                xy.next(data)
+            },1000)
+        }
+        function * gen(){
+            let users = yield getUsers()
+            console.log(users)
+            let orders = yield getOrderers()
+            console.log(orders)
+            let goods = yield getGoods()
+            console.log(goods)
+        }
+        let xy = gen()
+        xy.next()
+    </script>
+</body>
+</html>
