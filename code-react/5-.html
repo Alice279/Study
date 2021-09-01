@@ -1,0 +1,46 @@
+<!--jsx语法规则-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsx-react</title>
+</head>
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const data = {head:'xxx', content: [123, 456, 789]}
+      const data1 = ['sss', 'ddd', 'hhh']
+      const VDOM = (
+          <div>
+            <h1>{data.head}</h1>
+            <ul>
+                <li>{data.content[0]}</li>
+                <li>{data.content[1]}</li>
+                <li>{data.content[2]}</li>
+            </ul>
+            <ul>
+                {//不能写for循环，只能写表达式
+                    data1.map((item, index) => {
+                        return <li key={index}>{item}</li>
+                    })
+                    //必须写key,diffing算法需要用到唯一标识来对比
+                    //key有时候用index会出问题，后续探讨
+                }
+            </ul>
+          </div>
+      )
+      ReactDOM.render(VDOM, document.getElementById('test'))
+    </script>
+</body>
+</html>
+<!--
+    传入的数据是一个数组，react可以直接遍历
+    传入的数据是一个对象，react不会遍历
+-->

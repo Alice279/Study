@@ -1,0 +1,59 @@
+<!--jsx语法规则-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsx-react</title>
+    <style>
+        .title{
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const myId = "Guigu"
+      const myData = "Hello, React"
+      //1.创建虚拟DOM
+      const VDOM = (
+          <div>
+            <h2 className="title" id={myId.toLowerCase()}> 
+              <span style={{color:'white', fontSize:'29px'}}>{myData}</span>
+            </h2>
+            <h2 className="title" id={myId}>
+              <span style={{color:'white', fontSize:'29px'}}>{myData}</span>
+            </h2>
+            <input type="text" />
+          </div>
+      )
+      //2.渲染虚拟DOM到页面
+      ReactDOM.render(VDOM, document.getElementById('test'))
+    </script>
+</body>
+</html>
+<!--
+    jsx语法规则
+    1.定义虚拟DOM时不要写引号
+    2.标签里混入JS表达式时要使用{}  重点：不能写语句（见下方）
+    3.样式的类名指定不要用class，而使用className
+    4.内联样式 要用style={{key:value}}的形式去写，第一个{}是表示内容是js，第二个{}表示内容是对象
+    5.不能有多个根标签，只能有一个
+    6.标签必须闭合
+    7.标签：使用HTML里的标签元素；自己定义的组件首字母大写
+
+    注意区分 js语句(代码) 和 js表达式
+    1.表达式：一个表达式产生一个值，可以放在任何一个需要值的地方
+      可以放在 "var a =" 右边的都是表达式，有返回值的都是表达式
+    2.语句/代码
+      用于控制语句执行的，比如 if判断；for循环；switch选择
+      
+-->

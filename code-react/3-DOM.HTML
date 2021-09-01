@@ -1,0 +1,43 @@
+<!--观察真实DOM和虚拟DOM的区别-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+<body>
+    <div id='test'></div>
+    <div id="demo"></div>
+
+    <!--添加react核心库  核心库必须最先引入-->
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    
+    <!--用于支持react操作DOM-->
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+    <!--babel将jsx转化为js-->
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">/*使用jsx这里一定要写babel*/
+      //创建虚拟DOM
+      const VDOM = (
+        <h1 id="title">Hello,React</h1>  //这是虚拟DOM不是字符串，不加引号
+      )
+      const TDOM = document.getElementById('demo')
+
+      console.log('虚拟DOM', VDOM)
+      console.log('真实DOM', TDOM)
+
+      //渲染虚拟DOM到页面
+      ReactDOM.render(VDOM, document.getElementById('test'))
+
+    </script>
+</body>
+</html>
+<!--
+    这个页面之后开发者工具控制台有一个报错一个警告
+    报错：找不到ficon，这是标签页的那个图标，第一次会自动寻找，找不到报错，之后不会主动寻找
+    警告：希望下载react专有的调试工具
+-->
