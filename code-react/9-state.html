@@ -1,0 +1,47 @@
+<!---->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        //1.创建组件
+        class Weather extends React.Component {
+            constructor(props){
+                super(props)
+                //初始化状态
+                this.state = {isHot: true, iscold: true}
+            }
+            render(){
+                //可以提前读取出来，这样后面就不用写this.state这么长了
+                const {iscold} = this.state.iscold
+                return (
+                    <div>
+                        <h1 onClick={demo}>Today's weather is very {this.state.isHot ? 'hot' : 'cold'}</h1>
+                        <h1>Today's weather is very {iscold ? 'hot' : 'cold'}</h1>
+                    </div>
+                )
+            }
+        }
+        //渲染组件到页面
+        ReactDOM.render(<Weather />, document.getElementById('test'))
+
+        function demo () {
+            console.log('被点击了')
+        }
+    </script>
+</body>
+</html>
+<!--
+    事件名要用小驼峰写法，事件回调函数只写函数名
+-->
