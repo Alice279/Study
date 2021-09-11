@@ -1,4 +1,4 @@
-<!--state的基本用法，标准模式-->
+<!--state的简化模式-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,18 +17,10 @@
     <script type="text/babel">
         //1.创建组件
         class Weather extends React.Component {
-            //构造器调用几次？仅执行一次，产生一个实例
-            constructor(props){
-                super(props)
-                //初始化状态
-                this.state = {isHot: true, iscold: true}
-                //解决changeWeather中的this指向问题
-                this.changeweather = this.changeweather.bind(this)
-            }
-            //constructor和render里的this都是指向实例对象，react自动使用实例调用它们
-            //render调用n+1次，第一次获取初始值，每次更新页面都要调用render
+            //初始化状态
+            state = {isHot: false, wind: "微风"}
+
             render(){
-                //可以提前读取出来，这样后面就不用写this.state这么长了
                 const {iscold} = this.state.iscold
                 return (
                     <div>
@@ -37,16 +29,15 @@
                     </div>
                 )
             }
-            changeweather(){
-                //changeweather函数放在了哪里？Weather的原型对象上，供实例使用
-                //调用这个函数时要通过实例调用，即写成this.changeweather，而不能changeweather直接调用
-                //由于changeweather是作为onClick的回调，所以不是通过实例调用的，而是直接调用 
-                //类中的方法默认开启了局部的严格模式，所以 this=undefined
-
-                //状态不能直接更改，要借助内置的API setState来更改
+            
+            //自定义方法，都要写成 赋值语句 + 箭头函数 的形式
+            changeweather = ()=> {
                 const isHot = this.state.isHot
                 this.setState({isHot: !isHot})
             }
+            //把9-state.html里的函数写成这样子，是给类添加了一个changeweather属性
+            //这样changeweather就不是原型上的属性了，而是实例上的
+            //又这个属性是一个箭头函数，没有自己的this，所以this不再是undefined，而是实例对象
         }
         //2.渲染组件到页面
         ReactDOM.render(<Weather />, document.getElementById('test'))
@@ -55,5 +46,6 @@
 </body>
 </html>
 <!--
-    事件名要用小驼峰写法，事件回调函数只写函数名
+    9-state.html中是标准模式写法，本文档中是简化模式，开发中一般使用
+    这里可以看到开发中一个组件主要由3部分构成：状态初始化；自定义方法；render
 -->
