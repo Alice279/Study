@@ -1,4 +1,4 @@
-<!--props标准用法-->
+<!--函数组件里的props-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,36 +19,27 @@
 
     <script type="text/babel">
         //创建组件
-        class Person extends React.Component {
-            render(){
-                const {name, age, sex} = this.props
-                return (
-                    <ul>
-                        <li>{name}</li>
-                        <li>{age+1}</li>
-                        <li>{sex}</li>
-                    </ul>
-                )
-            }
+        function Person (props){
+            const {name, age, sex} = props
+            return (
+                <ul>
+                    <li>{name}</li>
+                    <li>{age+1}</li>
+                    <li>{sex}</li>
+                </ul>
+            )
         }
-        //props属性规则限制，必要性 类型
         Person.propTypes = {
-            //react15版本之前是可以这样使用的，但是之后的版本不再使用，因为加在react上面太大了
-            //name:React.ProTypes.string
-            //现在想要使用规则限制，需要引入prop-types库
             name:PropTypes.string.isRequired,
             sex:PropTypes.string,
             age:PropTypes.number,
-            //speak:func,  //函数类型不写function，写func
         }
-        //指定默认标签属性值
         Person.defaultProps = {
             sex:'boy',
             age:18,
         }
+
         //渲染组件到页面
-        ReactDOM.render(<Person name="Tom" sex="girl" />, document.getElementById('test'))
-        //批量传递数据
         const p = {name: 'liu', age: 11, sex: 'boy'}
         ReactDOM.render(<Person {...p}/>, document.getElementById('test1'))
     </script>

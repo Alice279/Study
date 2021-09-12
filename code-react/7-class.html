@@ -46,6 +46,9 @@
           //含义是给Student的实例对象添加一个属性，名为a，值为1
           a = 11
           //所以由外部传入的属性再写constructor，本来就有属性可以直接添加
+
+          //上一句是给类的实例添加属性，下面这句是给类自身添加属性
+          static b = 11
       }
       const s1 = new Student('xiao', 16, grade)
     </script>

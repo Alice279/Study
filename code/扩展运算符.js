@@ -29,3 +29,9 @@ const x2 = [...x1]
 //将伪数组转换为真正的数组
 const divs = document.querySelectorAll('div')
 const divArr = [...divs]
+
+//扩展运算符在原生js里不可以展开一个对象
+//但是 react + babel 就允许展开运算符展开一个对象了
+
+
+//扩展运算符在原生js里虽然不可以展开一个对象，但是可以复制一个对象

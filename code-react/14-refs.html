@@ -1,0 +1,43 @@
+<!--字符串形式的ref-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Demo extends React.Component {
+            showData = ()=> {
+                const {input1} = this.refs
+                alert(input1.value)
+            }
+            showData1 = ()=> {
+                const {input2} = this.regs
+                alert(input2.value)
+            }
+            render(){
+                //字符串类型的ref存在一些效率上的问题，官方不推荐使用
+                return (
+                    <div>
+                        <input ref="input1" type="text" placeholder="点击按钮提示数据"/>
+                        <button onClick={this.showData}>点我提示左侧数据</button>
+                        <input ref="input2" onBlur={this.showData1} type="text" placeholder="失去焦点提示数据"/>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('test'))
+    </script>
+</body>
+</html>
+<!---->

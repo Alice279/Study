@@ -1,4 +1,4 @@
-<!--props标准用法-->
+<!--props简写模式-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +20,23 @@
     <script type="text/babel">
         //创建组件
         class Person extends React.Component {
+            //构造器一定要穿props，也一定要super props
+            constructor(props){//类中构造器能省则省
+                super(props)
+            }
+
+            static propTypes = {
+                name:PropTypes.string.isRequired,
+                sex:PropTypes.string,
+                age:PropTypes.number,
+            }
+
+            static propTypes = {
+                name:PropTypes.string.isRequired,
+                sex:PropTypes.string,
+                age:PropTypes.number,
+        }
+
             render(){
                 const {name, age, sex} = this.props
                 return (
@@ -31,27 +48,21 @@
                 )
             }
         }
-        //props属性规则限制，必要性 类型
-        Person.propTypes = {
-            //react15版本之前是可以这样使用的，但是之后的版本不再使用，因为加在react上面太大了
-            //name:React.ProTypes.string
-            //现在想要使用规则限制，需要引入prop-types库
-            name:PropTypes.string.isRequired,
-            sex:PropTypes.string,
-            age:PropTypes.number,
-            //speak:func,  //函数类型不写function，写func
-        }
-        //指定默认标签属性值
-        Person.defaultProps = {
-            sex:'boy',
-            age:18,
-        }
+        
+  
         //渲染组件到页面
         ReactDOM.render(<Person name="Tom" sex="girl" />, document.getElementById('test'))
-        //批量传递数据
         const p = {name: 'liu', age: 11, sex: 'boy'}
         ReactDOM.render(<Person {...p}/>, document.getElementById('test1'))
     </script>
 </body>
 </html>
-<!---->
+<!--
+    整个脚本分为两部分：定义组件 使用组件
+    定义组件里一般有：属性的限制和默认值，初始状态，render
+
+    组件里还可以有构造器，构造器作用:1.初始化state；2.绑定事件处理函数
+    但是这两件事都可以用更简便的方法1.直接将state当作类里一个属性 2.箭头函数 来解决
+    所以，不写constructor也是可以的
+    但是如果希望在构造器中通过this访问props，则写构造器，且一定按照本文档里的写，一般用不到
+-->
