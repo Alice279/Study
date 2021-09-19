@@ -1,0 +1,77 @@
+<!--高阶函数 和 函数柯里化-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        //创建组件
+        class Login extends React.Component {
+
+            state = {
+                username: "",
+                password: ""
+            }
+
+            handleSubmit = (event)=> {
+                event.preventDefault()//阻止表单提交
+                const {username, password} = this.state
+                alert(`你输入的用户名是：${username}，你输入的密码是：${password}`)
+            }
+
+            //saveFormData是一个高阶函数
+            saveFormData = (dataType)=> {
+                //当再表单里输入内容时，实际上调用的是里面return的这个函数
+                //是react帮你调用的，react调用它时把event传进去了
+                return (event)=> {
+                    this.setState({[dataType]: event.target.value})
+                }
+                //注意：state是一个对象呀，dataType是一个变量，
+                //obj.a    obj[b]   其中a是字符串，b是变量或字符串 
+            }
+
+            render(){
+                return(
+                    <form onSubmit={this.handleSubmit}>
+                        用户名：<input onChange={this.saveFormData('username')} type="text" name="username"/>
+                        密码：<input onChange={this.saveFormData('password')} type="password" name="password"/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+        //渲染组件
+        ReactDOM.render(<Login />, document.getElementById('test'))
+    </script>
+</body>
+</html>
+<!--
+    onChange={this.saveFormData('username')}
+    onChange={this.saveFormData('password')}
+    是将saveFromData调用的返回值交给onChange作为回调
+    不是将saveFromData交给onChange作为回调
+
+    如果写成onChange={this.saveFormData}则没有办法传参，并不知道修改谁的值
+
+    我们的username和password是参数，希望能传到函数里
+
+    所以让saveFromData返回一个函数
+
+    如果函数没有return语句自动返回undefined
+
+    所以标签里事件直接对应的函数，可以有小括号(调用返回)可以没有小括号
+
+    不管有没有，重点是一定把一个函数作为事件的回调
+
+    #region  #endregion  来折叠
+-->

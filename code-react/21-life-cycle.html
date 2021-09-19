@@ -1,0 +1,70 @@
+<!--引出生命周期-->
+<!--文字有深到浅渐变，点击按钮卸载组件-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        //创建组件
+        class Life extends React.Component {
+
+            state = {
+                opacity:1
+            }
+
+            ok = ()=> {
+                //清除定时器
+                //clearInterval(this.timer)
+                //卸载组件
+                ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+            }
+
+            //组件挂载完毕时调用
+            componentDidMount(){
+                this.timer = setInterval(()=>{
+                    //获取原状态
+                    let {opacity} = this.state
+                    //减小0.1
+                    opacity -= 0.1
+                    if(opacity <= 0) opacity = 1
+                    //设置新的透明度
+                    this.setState({opacity})
+                }, 200)
+            }
+
+            //组件将要卸载
+            componentWillUnmount(){
+                //清除定时器
+                clearInterval(this.timer)
+            }
+
+            //render调用的时机：初始化渲染、状态更新之后
+            render(){
+                return (
+                    <div>
+                        <h2 style={{opacity:this.state.opacity}}>学习React</h2>
+                        <button onClick={this.ok}>好呀</button>
+                    </div>
+                )
+            }
+            //给标签添加行内样式注意使用双括号
+        }
+        //渲染组件
+        ReactDOM.render(<Life />, document.getElementById('test'))
+    </script>
+</body>
+</html>
+<!--
+    生命周期回调函数 <==> 生命周期钩子函数 <==> 生命周期 <==> 生命钩子
+-->

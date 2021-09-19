@@ -1,0 +1,71 @@
+<!--不使用高阶函数实现-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        //创建组件
+        class Login extends React.Component {
+
+            state = {
+                username: "",
+                password: ""
+            }
+
+            handleSubmit = (event)=> {
+                event.preventDefault()//阻止表单提交
+                const {username, password} = this.state
+                alert(`你输入的用户名是：${username}，你输入的密码是：${password}`)
+            }
+
+            saveFormData = (dataType, event)=> {
+
+                this.setState({[dataType]: event.target.value})
+                //注意：state是一个对象呀，dataType是一个变量，
+                //obj.a    obj[b]   其中a是字符串，b是变量或字符串 
+            }
+
+            render(){
+                return(
+                    <form onSubmit={this.handleSubmit}>
+                        用户名：<input onChange={event => this.saveFormData('username', event)} type="text" name="username"/>
+                        密码：<input onChange={event => this.saveFormData('password', event)} type="password" name="password"/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+        }
+        //渲染组件
+        ReactDOM.render(<Login />, document.getElementById('test'))
+    </script>
+</body>
+</html>
+<!--
+    不是总之要把一个函数作为事件的回调嘛，所以：
+
+    onChange = {()=> {}}
+
+    onChange触发的会传进去event，所以：
+
+    onChange = {(event)=> {}}
+
+    回调函数里我们更改state，调用更改state的函数，传入所有需要的参数，所以：
+
+    onChange = {(event)=> {this.saveFormData('username', event.target.value)}}
+
+    只有一个参数，一条语句，就可以简化，所以：
+
+    onChange = {event => this.saveFormData('username', event.target.value) }
+
+-->
