@@ -18,3 +18,5 @@ reportWebVitals();
 
 //入口文件 引入核心库 DOM 组件
 //包裹 <React.StrictMode> 可以进行检查组件内有没有不符合规范的
+//ReactDOM.render只能渲染一个组件，如果再使用它就会覆盖之前的
+//想使用其它组件只能作为App的子组件
