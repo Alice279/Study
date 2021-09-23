@@ -1,0 +1,15 @@
+.item {
+    width: 400px;
+}
+
+.Pitem {
+    background-color:cyan;
+}
+
+.button {
+    display: none;
+}
+
+.Pbutton {
+    display: inline;
+}
