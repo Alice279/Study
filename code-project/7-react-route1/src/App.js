@@ -31,7 +31,7 @@ export default class App extends Component {
           <Route path='/about' component={About}/>
           <Route path='/home' component={Home}/>
           <Redirect to="/about"/>
-          {/** <Redirect>是重定向标签   另外页面一打开就是about页面也是这个Redirect的原因*/}
+          {/** <Redirect>是重定向标签 */}
 
         {/** </BrowserRouter>*/}
       </div>
