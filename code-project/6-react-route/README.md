@@ -48,3 +48,40 @@ react-router是react的插件库，又分为给web用的，给native用的和通
 
 react-router-dom是react的一个插件库，专门用来实现一个SPA应用
 
+# 路由的基本使用
+
+1.明确好界面中的导航区、展示区
+
+2.导航区的a标签改为Link标签，a标签负责链接页面，Link标签负责链接组件
+
+其实<Link>标签在底层还是会被转化成<a>标签来实现跳转，不过又自动写了写跳转函数
+
+<Link to='/xxx'>Demo</Link>
+
+3.展示区写Route标签进行路径的匹配
+
+<Route path='/xxx' component={Demo}>
+
+4.<App>的最外侧包裹了一个<BrowserRouter>或<HashRouter>
+
+# 路由组件与一般组件
+
+1.写法不同
+
+一般组件：<Demo />
+
+路由组件：<Route path='/xxx' component={Demo}>
+
+2.存放位置不同
+
+一般组件：components
+
+路由组件：pages
+
+3.接收到的props
+
+一般组件：写组件标签时传递了什么，就能收到什么
+
+路由组件：接收到三个固定属性  history location match
+
+history
