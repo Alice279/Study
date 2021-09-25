@@ -1,6 +1,6 @@
 # SPA
 
-单页面应用，整个应用只有一个完整的页面
+单页面应用，整个应用只有一个完整的页面，我们做的一般是单页面多组件应用
 
 点击页面中的链接不会刷新页面，只会做页面的局部更新
 
@@ -35,3 +35,16 @@ key 是 路径 ； value 是 function / component
 依靠BOM身上的history history对象的 push replace forword back listen 等方法
 
 可以实现更改浏览器路径，页面监听浏览器路径的改变等等
+
+工作过程：
+
+1.点击导航栏里的导航链接引起路径变化
+
+2.变化被路由器检测到后匹配组件并展示
+
+# react-router-dom的理解
+
+react-router是react的插件库，又分为给web用的，给native用的和通用的三个子划分
+
+react-router-dom是react的一个插件库，专门用来实现一个SPA应用
+
