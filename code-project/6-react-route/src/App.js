@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 //import {BrowserRouter, Link, Route} from 'react-router-dom'
-import {Link, NavLink, Route} from 'react-router-dom'
+import {Link, NavLink, Route, Redirect} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import MyNavLink from './components/MyNavLink'
@@ -17,18 +17,21 @@ export default class App extends Component {
         {/**编写路由链接 */}
           <Link className="xxx" to="/about">About</Link>
           <NavLink activeClassName="xxx" to="/home">Home</NavLink>
-          <MyNavLink to='/about'>MyNavLinkAbout</MyNavLink>
-          <MyNavLink to='/home'>MyNavLinkHome</MyNavLink>
+          <MyNavLink exact={true} to='/about'>MyNavLinkAbout</MyNavLink>
+          <MyNavLink exact to='/home'>MyNavLinkHome</MyNavLink>
           {/** <NavLink>标签比<Link>标签多了一个activeClassName属性 选中导航栏时的类名*/}
           {/** 如果写若干个<NavLink>标签，比如activeClassName属性就是相同的，要重复好多遍
            *   所以我们可以封装一下库里的标签变为自定义组件
            *   标签体里的内容也会被收集到传递过去
            */}
+          {/** exact用于开启严格匹配 */}
 
         {/**注册路由 */}
         
           <Route path='/about' component={About}/>
           <Route path='/home' component={Home}/>
+          <Redirect to="/about"/>
+          {/** <Redirect>是重定向标签 */}
 
         {/** </BrowserRouter>*/}
       </div>

@@ -84,4 +84,40 @@ react-router-dom是react的一个插件库，专门用来实现一个SPA应用
 
 路由组件：接收到三个固定属性  history location match
 
-history
+# NavLink 和封装 NavLink
+
+1.NavLink可以实现路由链接的高亮，通过activeClassName指定样式名
+
+2.标签内容体是一个特殊的标签属性
+
+3.通过this.props.children可以获得标签体内容
+
+# Switch的使用
+
+1.通常情况下，path和component是一一对应的关系
+
+如果一个path指向了多个component会把所有component都找到
+
+2.Switch可以提高路由的匹配效率（单一匹配）
+
+# 解决多级路径刷新页面样式丢失问题
+
+1.public/index.html 中引入样式时不写相对路径 ./ 写绝对路径 /
+
+2.public/index.html 中引入样式时不写相对路径 ./ 写绝对路径 %PUBLIC_URL%
+
+3.使用HashRouter
+
+# 路由的严格匹配与模糊匹配
+
+1.默认使用的是模糊匹配：输入的路径 必须包含 匹配的路径，且顺序要一致
+
+2.开启严格匹配：在<Route>标签里添加 exact={true} 或者 exact
+
+3.严格匹配不要随便开启，需要再开，有些时候开启会导致无法继续使用二级路由
+
+# Redirect的使用
+
+1.一般写在所有路由注册的最下方，当所有路由都无法匹配时，跳转到Redirect指定的路由
+
+2.其中的to属性用来指定跳转路由
