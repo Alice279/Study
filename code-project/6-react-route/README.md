@@ -84,6 +84,40 @@ react-router-dom是react的一个插件库，专门用来实现一个SPA应用
 
 路由组件：接收到三个固定属性  history location match
 
+--------------------
+
+history:
+
+go: f go(n)
+
+goBack(): f goBack()
+
+goForward: f goForward()
+
+push: f push(path, state)
+
+replace: f replace(path, state)
+
+---------------------
+
+location:
+
+pathname: "/about"
+
+search: ""
+
+state: undefined
+
+-----------------------
+
+match:
+
+params: {}
+
+path: "/about"
+
+url: "/about"
+
 # NavLink 和封装 NavLink
 
 1.NavLink可以实现路由链接的高亮，通过activeClassName指定样式名
