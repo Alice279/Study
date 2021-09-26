@@ -4,6 +4,7 @@ import {Link, NavLink, Route, Redirect} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import MyNavLink from './components/MyNavLink'
+import Header from './components/Header'
 
 export default class App extends Component {
 
@@ -11,6 +12,8 @@ export default class App extends Component {
     return (
       <div>
         <h2>React Router Demo</h2>
+
+        <Header />
         
         {/** <BrowserRouter>*/}
 

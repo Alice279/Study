@@ -55,3 +55,31 @@ replace模式是点击的新的页面替换当前页面，不可回退
 -this.props.history.goForward()
 
 -this.props.history.go()
+
+# withRouter的使用
+
+react-router-dom库里的一个函数，用来加工一般组件
+
+返回一个拥有路由组件特有的props属性的新组件
+
+# BrowserRouter和HashRouter的区别
+
+1.底层原理不一样
+
+BrowserRouter使用的是H5的history API，不兼容IE9及以下版本
+
+HashRouter使用的是URL的哈希值
+
+2.path表现形式不一样
+
+BrowserRouter路径中没有#
+
+HashRouter路径中包含#，且#之后内容默认为前台资源不会发送给服务器
+
+3.刷新后对路由state的影响
+
+BrowserRouter没有任何影响，因为state保存在history对象中
+
+HashRouter刷新后会导致路由state参数的丢失
+
+4.备注：HashRouter可以用于解决一些路径错误相关的问题

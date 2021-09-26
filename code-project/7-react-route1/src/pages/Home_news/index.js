@@ -4,7 +4,7 @@ export default class Home_news extends Component {
 
     componentDidMount(){
         setTimeout(()=>{
-            this.props.history.push('/home/message')
+            this.props.history.push('/home/home_message')
         }, 2000)
     }
 

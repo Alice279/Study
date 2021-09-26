@@ -16,6 +16,7 @@ export default class Home_message extends Component {
 
     replaceShow = (id, title)=>{
         //编写代码，让其跳转到Detail组件，并且为replace跳转
+        console.log(this.props)
         this.props.history.replace('/home/home_message/detail', {id, title})
     }
 
@@ -51,8 +52,8 @@ export default class Home_message extends Component {
                                 {/** 向路由组件传递state参数 */}
                                 <Link to={{pathname:'/home/home_message/detail', state:{id:msObj.id, title:msObj.title}}}>{msObj.title}</Link>
 
-                                &nbsp;<button onClice={()=> this.pushShow(msObj.id, msObj.title)}>push查看</button>
-                                &nbsp;<buttom onClice={()=> this.replaceShow(msObj.id, msObj.title)}>replace查看</buttom>
+                                &nbsp;<button onClick={()=> this.pushShow(msObj.id, msObj.title)}>push查看</button>
+                                &nbsp;<button onClick={()=> this.replaceShow(msObj.id, msObj.title)}>replace查看</button>
                             </li>
                         )
                     })
@@ -68,8 +69,8 @@ export default class Home_message extends Component {
             {/** 声明接收state参数 无须接收 */}
             <Route path='/home/home_message/detail' component={Detail} />
 
-            <button onClice={this.back}>回退</button>
-            <button onClice={this.forward}>前进</button>
+            <button onClick={this.back}>回退</button>
+            <button onClick={this.forward}>前进</button>
 
           </div>
         )
