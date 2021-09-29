@@ -1,2 +1,0 @@
-var reg = new RegExp()
-
