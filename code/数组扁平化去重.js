@@ -19,3 +19,39 @@ function flatten (arr) {
     return arr
 }
 Array.from(new Set())
+
+
+/////////////////
+
+var arr = [1, [2, [3, 4]]].toString().split(',').map((item)=>{
+    return +item
+})
+console.log(arr)
+
+
+////////////////////
+
+var arr = [1, [2, [3, 4]]]
+
+while (arr.some(item => Array.isArray(item))) {
+    arr = [].cancat(...arr)
+}
+
+/////////////////////
+
+var arr = [1, [2, [3, 4]]]
+
+function flatten (arr) {
+    return arr.reduce((pre, next) => {
+        return pre.concat(Array.isArray(next) ? flatten(next) : next)
+    }, [])
+}
+
+
+
+
+
+// number 转换为 string 的简便方法 
+arr + ''
+// string 转换为 number 的简便方法
++string
