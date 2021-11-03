@@ -25,8 +25,30 @@ app.post('/server', (request, response) => {
     response.send('Hello Ajax Post');
 })
 
+//可以接收任意类型的请求
+app.all('/json-server', (requset, response) => {
+    //设置响应头，设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*');
+    //设置响应头
+    response.setHeader('Access-Control-Allow-Headers','*');
+    //响应一个数据
+    const data = {
+        name: 'atguigu'
+    }
+    //对对象字符串转换
+    let str = JSON.stringify(data)
+    //设置响应体,send里只能存放字符串
+    response.send(str);
+})
+
+app.get('/ie', (requset, response) => {
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.send('Hello IE')
+})
 
 //4.监听端口启动服务
 app.listen(8000, () => {
     console.log('服务已经启动');
 })
+
+//经常更新服务端文件，可以使用 nodemon 包，自动更新

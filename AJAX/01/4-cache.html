@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX GET</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 100px;
+            border: solid 1px purple;
+        }
+    </style>
+</head>
+<body>
+    <button>click to send requst</button>
+    <div id="result"></div>
+
+    <script>
+        //获取元素
+        const btn = document.getElementsByTagName('button')[0];
+        const result = document.getElementById("result");
+        //绑定事件
+        btn.addEventListener('click', function() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://127.0.0.1:8000/ie?t='+ Date.now());
+            xhr.send()
+            xhr.onreadystatechange = function(){
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        result.innerHTML = xhr.response
+                    }
+                }
+            }
+        })
+        //ie 浏览器如果已经访问过某 url，再访问就会走缓存
+        //当服务器 response 的内容改变时，不能及时更新
+        //AJAX ie 缓存的解决方法：在 url 后加参数，参数每次传不一样的时间戳
+    </script>
+</body>
+</html>
