@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery发AJAX请求</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h2>jQuery发AJAX请求</h2>
+    <button>GET</button>
+    <button>POST</button>
+    <button>通用型方法AJAX</button>
+    <script>
+        $('button').eq(0).click(function(){
+            $.get('http://127.0.0.1:8000/jquery-server',
+            {a:100, b:2000},
+            function(data){
+                console.log(data);
+            }, 'json')
+        })
+
+        $('button').eq(1).click(function(){
+            $.post('http://127.0.0.1:8000/jquery-server',
+            {a:100, b:2000},
+            function(data){
+                console.log(data);
+            })
+        })
+
+        $('button').eq(2).click(function(){
+            $.ajax({
+                //url
+                url: 'http://127.0.0.1:8000/jquery-server',
+                //想传输的参数
+                data: {a:100, b:200},
+                //请求类型
+                type: 'GET',
+                //响应体结果设置
+                dataType: 'json',
+                //成功的回调
+                success: function(data){
+                    console.log(data)
+                },
+                //超时时间
+                timeout: 20000,
+                //失败的回调
+                error: function(){
+                    console.log('出错啦')
+                },
+                //头信息
+                headers: {
+                    c:300,
+                    d:400
+                }
+            })
+        })
+
+        //事件回调函数里传入四个参数，分别是：
+        //请求类型以及网址；传入的参数；收到response回调函数；数据的格式
+        //注意，服务器那边应该设置的和这边设置的数据格式匹配才行
+
+        //事件回调函数里也可以直接使用 ajax 方法，这个方法接收一些参数
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复请求</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 100px;
+            border: solid 1px purple;
+        }
+    </style>
+</head>
+<body>
+    <button>click to send requst</button>
+
+    <script>
+        const btns = document.querySelectorAll('button');
+        let x = null;
+        //标识变量 是否正在发送AJAX请求
+        let isSending = false
+
+        btns[0].onclick = function(){
+            //判断标识变量，如果正在发送就取消该请求，创建一个新请求
+            if (isSending) x.abort()
+            x = new XMLHttpRequest();
+            //修改标识变量的值
+            isSending = true
+            x.open('GET', 'http://127.0.0.1:8000/delay');
+            x.send();
+            x.onreadystatechange = function() {
+                if (x.readyState === 4) {
+                    isSending = false
+                }
+            }
+        }
+        //防止用户重复点击，如果点击时已经有请求，就把之前的请求取消重新发新的
+        //这样不管连续点击多少次，实际只发送一次，减小服务器的压力
+    </script>
+</body>
+</html>

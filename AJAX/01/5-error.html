@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>缓存</title>
+    <title>超时异常</title>
     <style>
         #result {
             width: 200px;
@@ -18,25 +18,33 @@
     <div id="result"></div>
 
     <script>
-        //获取元素
         const btn = document.getElementsByTagName('button')[0];
         const result = document.getElementById("result");
-        //绑定事件
-        btn.addEventListener('click', function() {
+
+        btn.onclick = function(){
             const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'http://127.0.0.1:8000/ie?t='+ Date.now());
-            xhr.send()
+            //超时设置 2s后还没有结果就把请求取消
+            xhr.timeout = 2000;
+            //超时回调
+            xhr.ontimeout = function(){
+                alert('网络异常，请稍后重试')
+            }
+            xhr.onerror = function(){
+                alert('你的网络似乎出了一些问题')
+            }
+
+            xhr.open('GET', 'http://127.0.0.1:8000/delay');
+            xhr.send();
             xhr.onreadystatechange = function(){
                 if (xhr.readyState === 4) {
                     if (xhr.status >= 200 && xhr.status < 300) {
-                        result.innerHTML = xhr.response
+                        result.innerHTML = xhr.response;
                     }
                 }
             }
-        })
-        //ie 浏览器如果已经访问过某 url，再访问就会走缓存
-        //当服务器 response 的内容改变时，不能及时更新
-        //AJAX ie 缓存的解决方法：在 url 后加参数，参数每次传不一样的时间戳
+        }
+        //设置请求时间限制，当超过时间限制时取消请求，还可以设置超时响应函数
+        //设置网络异常响应函数
     </script>
 </body>
 </html>

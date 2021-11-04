@@ -41,10 +41,44 @@ app.all('/json-server', (requset, response) => {
     response.send(str);
 })
 
+//针对 IE 缓存
 app.get('/ie', (requset, response) => {
     response.setHeader('Access-Control-Allow-Origin','*');
     response.send('Hello IE')
 })
+
+//延时响应
+app.get('/delay', (requset, response) => {
+    response.setHeader('Access-Control-Allow-Origin','*');
+    setTimeout(() => {
+        response.send('延时响应')
+    }, 3000)
+})
+
+//jquery服务
+app.all('/jquery-server', (requset, response) => {
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+    const data = {name: 'shangguigu'}
+    response.send(JSON.stringify(data))
+})
+
+//axios服务
+app.all('/axios-server', (requset, response) => {
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+    const data = {name: 'shangguigu'}
+    response.send(JSON.stringify(data))
+})
+
+//fetch服务
+app.all('/fetch-server', (requset, response) => {
+    response.setHeader('Access-Control-Allow-Origin','*');
+    response.setHeader('Access-Control-Allow-Headers','*');
+    const data = {name: 'shangguigu'}
+    response.send(JSON.stringify(data))
+})
+
 
 //4.监听端口启动服务
 app.listen(8000, () => {
