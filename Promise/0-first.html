@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初次尝试</title>
+</head>
+<body>
+    <div>
+        <button id="btn">点击抽奖</button>
+    </div>
+    <script>
+        /*
+          需求：点击按钮，2s后显示是否中奖（30%概率中奖）
+          中奖弹出 恭喜！中奖数字为：xxx
+          未中弹出 再接再厉！号码为：xxx
+        */
+       //生成随机数
+       function rand(m, n) {
+           return Math.ceil(Math.random() * (n-m+1)) + m-1
+       }
+
+       const btn = document.querySelector('#btn')
+       //绑定单机事件
+       btn.addEventListener('click', function(){
+        //    //普通实现
+        //    setTimeout(() => {
+        //        let n = rand(1, 100)
+        //        if (n <= 30) {
+        //            alert('恭喜！')
+        //        }
+        //        else {
+        //            alert('再接再厉！')
+        //        }
+        //    }, 1000)
+            //promise实现  promise可以包裹异步操作
+            // resolve 解决 函数类型的数据
+            // reject  拒绝 函数类型数据
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let n = rand(1, 100)
+                    if (n <= 30) {
+                        resolve(n); //将 promise 对象状态设置为 成功
+                    }
+                    else {
+                        reject(n); //将 promise 对象状态设置为 失败
+                    }
+                }, 1000)
+            })
+
+            //调用 then 方法，接收两个参数，成功和失败时候的回调
+            p.then((value) => {
+                alert('恭喜！中奖数字为' + value)
+            }, (reason) => {
+                alert('再接再厉！号码为' + reason)
+            })
+       })
+    </script>
+</body>
+</html>
