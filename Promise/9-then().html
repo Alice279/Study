@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>then链式调用</title>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('OK');
+            }, 1000);
+        });
+
+        p.then(value => {
+            return new Promise((resolve, reject) => {
+                resolve('success')
+            })
+        }).then(value => {
+            console.log(value)
+        }).then(value => {
+            console.log(value)
+            //返回一个 pendig 状态的 promise 来中断回调
+            return new Promie(() => {})
+        }).then(value => {
+            console.log('我被中断了无法输出')
+        })
+
+        //第三个 then 这里输出的 value 是 undefined
+        //因为 then 返回一个 promise 对象，
+        //第二个 then 没有写 return 返回的 promise 的 value 是 undefined
+    
+    </script>
+</body>
+</html>
