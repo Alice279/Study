@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <script>
+        // 设置请求拦截器 参数 config 就是配置
+        axios.interceptors.request.use(function (config) {
+            //可以在这里对 config 进行修改
+            console.log('请求拦截器1号 成功')
+            return config;
+        }, function (error) {
+            console.log('请求拦截器1号 失败')
+            return Promise.reject(error);
+        })
+
+        // 设置请求拦截器
+        axios.interceptors.request.use(function (config) {
+            console.log('请求拦截器2号 成功')
+            return config;
+        }, function (error) {
+            console.log('请求拦截器2号 失败')
+            return Promise.reject(error);
+        })
+
+        // 设置响应拦截器 参数 response 是默认生成的那个响应
+        axios.interceptors.response.use(function (response) {
+            console.log('响应拦截器1号 成功')
+            //我们返回的时候，也可以不返回 response，比如返回
+            // return response.data
+            //这样我们在自定义回调函数里，就只能看到 response.data
+            return response;
+        }, function (error) {
+            console.log('响应拦截器1号 失败')
+            return Promise.reject(error);
+        })
+
+        // 设置响应拦截器
+        axios.interceptors.response.use(function (response) {
+            console.log('响应拦截器2号 成功')
+            return response;
+        }, function (error) {
+            console.log('响应拦截器2号 失败')
+            return Promise.reject(error);
+        })
+
+        //发送请求
+        axios({
+            method: 'GET',
+            url: 'http://localhost:3000/post'
+        }).then(response => {
+            console.log(response)
+        }).catch(eason => {
+            console.log(reason)
+        })
+
+        //多个请求拦截器和响应拦截器
+        //执行顺序是 请求2号--请求1号--响应1号--响应2号--自定义回调
+    </script>
+</body>
+
+</html>
+
+
+
+
+//拦截器就是一些函数，分为 请求拦截器 和 响应拦截器
+//借助一些函数对请求的内容和参数做一些处理和检测，满足条件才允许发送
+//在我们处理结果之前对响应结果预处理，满足条件才交由用户做处理
