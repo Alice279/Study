@@ -81,6 +81,16 @@
                 console.log(response)
             })
         }
+    
+        //实际使用中，一般我们接收到 response 后并不会直接使用，
+        //因为返回的是 server 返回的，当然和我们简单例子里的不一样
+        //下面介绍一下返回的 response 一般包含的内容：
+        // data:{}  server 返回的 response，所以我们一般使用  response => response.data
+        // status: 200   HTTP status
+        // statusText: 'OK'   HTTP status message
+        // headers: {}  server 返回的 response 的请求头
+        // config: {}   request 时 axios 做的配置
+        // request: {}   最后一个客户端请求
     </script>
 </body>
 
