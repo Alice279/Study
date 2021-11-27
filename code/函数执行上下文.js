@@ -1,8 +1,29 @@
-//变量提升和函数提升，先执行变量提升
+//变量提升和函数提升，函数提升的优先级要高一些
+//但是不会被后面的变量提升的变量声明和初始化为undefined覆盖
+//但是会在变量赋值的时候被覆盖
+//例子一：
 function a(){
 }
 var a
-console.log(typeof a) //'function'
+console.log(typeof a) //'function'   变量未赋值，函数没有被覆盖
+//例子二：
+function hoistFunction() {
+    foo(); // 2
+
+    var foo = function () {
+        console.log(1);
+    };
+
+    foo(); // 1
+
+    function foo() {
+        console.log(2);
+    }
+
+    foo(); // 1
+}
+
+hoistFunction();
 
 
 //测试2
