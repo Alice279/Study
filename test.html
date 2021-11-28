@@ -10,28 +10,12 @@
 
 <body>
     <script>
-        // function a() {
-        // }
-        // var a
-        // console.log(typeof a)
-
-        function hoistFunction() {
-            foo(); // 2
-
-            var foo = function () {
-                console.log(1);
-            };
-
-            foo(); // 1
-
-            function foo() {
-                console.log(2);
-            }
-
-            foo(); // 1
+        var c = 1
+        function c(c) {
+            console.log(c)
+            var c = 3
         }
-
-        hoistFunction();
+        c(2)
     </script>
 </body>
 

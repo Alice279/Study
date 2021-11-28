@@ -51,11 +51,11 @@ function c(c) {
 c(2)
 //应该报错
 /**实际代码应该是
-var c = undefined
 function c(c) {
     console.log(c)
     var c = 3
 }
+var c = undefined
 c = 1
 c(2)   
  */
