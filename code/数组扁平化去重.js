@@ -18,7 +18,7 @@ function flatten (arr) {
     }
     return arr
 }
-Array.from(new Set())
+Array.from(new Set(arr))
 
 
 /////////////////

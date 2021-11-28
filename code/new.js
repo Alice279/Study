@@ -21,7 +21,7 @@ function mynew(fnc, ...args){
 
 function my_new () {
     var obj = new Object()
-    Constructor = [].shift.call(arguments)   
+    tor = [].shift.call(arguments)   
     //取出第一个参数，就是我们要传入的构造函数
     obj.__propto__ = Constructor.prototype
     //将obj的原型指向构造函数，这样实例就可以访问到构造函数原型中的属性
