@@ -35,7 +35,7 @@ export default class Search extends Component {
 
 //this上有keyWordElement，keyWordElement上有value
 //常规解构赋值  const {value} = this.keyWordElement
-//连续解构赋值  const {keyWordElement:{value}} = this.keyWordElement
+//连续解构赋值  const {keyWordElement:{value}} = this
 //连续解构赋值时还可以给变量重命名 ：
 // let obj2 = {a:{b:1}}
 // const {a:{b:data}} = obj2
