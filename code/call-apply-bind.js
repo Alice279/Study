@@ -25,6 +25,7 @@ Function.prototype.myBind = function(context, ...args) {
         return _this.myApply(context, [...args, ...newArgs])
     }
 }
+// bind 函数可以作为构造函数使用，当 bind 函数生成实例时，this 应该指向生成的实例
 
 //===================================================================
 

@@ -1,0 +1,67 @@
+<!---->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello-react</title>
+</head>
+
+<body>
+    <div id='test'></div>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        import React, { memo, useState } from 'react'
+
+        function Home() {
+            console.log('触发Home刷新');
+            return (
+                <div>Home组件</div>
+            )
+        }
+        function About() {
+            console.log('触发About刷新');
+            return (
+                <div>About组件</div>
+            )
+        }
+
+        const MemoHome = memo(Home)
+        const MemoAbout = memo(About)
+
+        function App() {
+            console.log('app进行刷新');
+            const [numState, setNumState] = useState(10)
+            const [ageState, setAgeState] = useState(20)
+            return (
+                <div>
+                    <p>数据：{numState}</p>
+                    <button onClick={() => { setNumState(numState + 1) }}>+1</button>
+                    <button onClick={() => { setNumState(numState - 1) }}>-1</button>
+                    <hr />
+                    <p>数据：{ageState}</p>
+                    <button onClick={() => { setAgeState(ageState + 1) }}>+1</button>
+                    <button onClick={() => { setAgeState(ageState - 1) }}>-1</button>
+                    <hr />
+                    <MemoAbout />
+                    <hr />
+                    <MemoHome />
+                </div>
+
+            );
+        }
+
+        // export default App;
+
+        ReactDOM.render(<App />, document.getElementById('test'))
+    </script>
+</body>
+
+</html>
+<!---->
