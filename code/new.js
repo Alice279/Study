@@ -31,3 +31,12 @@ function my_new () {
     //判断返回值是不是一个对象，是则返回对象，不是则该返回啥返回啥
     //有点构造函数返回对象，有的就不是
 }
+
+//执行构造函数时把this指向新生成的实例，构造函数的执行结果是对象则返回该对象，不是对象就返回实例
+
+function myNew(fn, ...args) {
+    const obj = {};
+    Object.setPrototypeOf(obj, fn.prototype);
+    const result = fn.apply(obj, args)
+    return result instanceof Object ? result : obj;
+}

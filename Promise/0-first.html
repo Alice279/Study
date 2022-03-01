@@ -16,24 +16,24 @@
           中奖弹出 恭喜！中奖数字为：xxx
           未中弹出 再接再厉！号码为：xxx
         */
-       //生成随机数
-       function rand(m, n) {
-           return Math.ceil(Math.random() * (n-m+1)) + m-1
-       }
+        //生成随机数
+        function rand(m, n) {
+            return Math.ceil(Math.random() * (n - m + 1)) + m - 1
+        }
 
-       const btn = document.querySelector('#btn')
-       //绑定单机事件
-       btn.addEventListener('click', function(){
-        //    //普通实现
-        //    setTimeout(() => {
-        //        let n = rand(1, 100)
-        //        if (n <= 30) {
-        //            alert('恭喜！')
-        //        }
-        //        else {
-        //            alert('再接再厉！')
-        //        }
-        //    }, 1000)
+        const btn = document.querySelector('#btn')
+        //绑定单机事件
+        btn.addEventListener('click', function () {
+            //    //普通实现
+            //    setTimeout(() => {
+            //        let n = rand(1, 100)
+            //        if (n <= 30) {
+            //            alert('恭喜！')
+            //        }
+            //        else {
+            //            alert('再接再厉！')
+            //        }
+            //    }, 1000)
             //promise实现  promise可以包裹异步操作
             // resolve 解决 函数类型的数据
             // reject  拒绝 函数类型数据
@@ -55,7 +55,7 @@
             }, (reason) => {
                 alert('再接再厉！号码为' + reason)
             })
-       })
+        })
     </script>
 </body>
 </html>
