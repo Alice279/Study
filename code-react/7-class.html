@@ -50,7 +50,9 @@
           //上一句是给类的实例添加属性，下面这句是给类自身添加属性
           static b = 11
       }
-      const s1 = new Student('xiao', 16, grade)
+      const s1 = new Student('xiao', 16, 3)
+      console.log(s1.a)
+      console.log(Student.b)
     </script>
 </body>
 </html>
@@ -60,4 +62,8 @@
     3.类中定义的方法都是放在了类的原型对象上，供实例使用
     4.类中的方法自动开启严格模式
     react里组件的事件指定函数时也只是找到了函数，但是没有调用，相当于33行
+
+    //类的 constructor 里是函数构造体里的属性函数
+    //类里直接定义的方法(不加function关键字)是定义在原型上的方法，每个实例都继承
+    //类里定义的static方法是类的静态方法
 -->
