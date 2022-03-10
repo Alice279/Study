@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象键名的转换</title>
+</head>
+<body>
+    <script>
+        //判断输出
+
+        //example 1
+        var a = {}, b = '123', c = 123
+        a[b] = 'b'
+        a[c] = 'c'
+
+        console.log(a[b])
+        //c = 123 里 123 被自动转换成字符串类型，把 b 覆盖掉
+        //输出 c
+
+        //example 2
+        var a = {}, b = Symbol('123'), c = Symbol('123')
+        a[b] = 'b'
+        a[c] = 'c'
+
+        console.log(a[b])
+        //Symbol 类型不需要转换，任何一个 Symbol 都是不等的，不会覆盖
+        //输出 b
+
+        //example 3
+        var a = {}, b = {key:'123'}, c = {key:'456'}
+        a[b] = 'b'
+        a[c] = 'c'
+
+        console.log(a[b])
+        //对象类型调用 toString 方法转换成字符串 [object Object]
+        //输出 c
+
+        //总结：
+        //对象的键名只能是 字符串 和 Symbol 类型
+        //其它类型的键名会被转换成字符串类型
+        //对象转字符串默认会调用 toString 方法
+
+    </script>
+</body>
+</html>

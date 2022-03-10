@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //判断输出
+
+        var a = {n: 1}
+        var b = a
+        a.x = a = {n: 2}
+
+        console.log(a.x)
+        console.log(b.x)
+
+        //第一点：变量引用对象。
+        //对象是存储在堆里的，我们定义的变量是存储在栈里的对象的引用
+
+        //第二点：运算符的优先级问题
+        //赋值操作从右到左，但是 . 运算符的优先级比 = 运算符优先级高
+
+        //第三点：当遇到不存在的属性时的操作
+        //创建一个{"base":xxx, "name":xxx, ...}这样的数据结构，并在对它读写时创建它
+
+        //具体分析：
+        //首先有一个对象 {n: 1}，然后有两个引用 a 和 b 指向这个对象
+        //执行到 a.x = a = {n: 2} 时，. 优先级高于 =
+        //先将 x 作为 . 的右操作数计算表达式 a.x，得到结果是一个数据结构
+        // { "base": a, "name": x, ...}，但是仅仅有这样一个结构，并不存在，里面的 a 是现在 a 指向的对象 {n: 1}
+        // 然后真实的引用 a 指向一个新的对象 {n: 2}，没有 x 属性
+        // 然后 a.x = {n: 2}，就为原来 a 指向的的那个对象创建了一个 x 属性 { n: 1, x: {n: 2}}，而这时候 b 还指向它
+    </script>
+</body>
+</html>

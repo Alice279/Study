@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包</title>
+</head>
+
+<body>
+    <script>
+        //按要求编写函数
+
+        var foo = function (...args) { 
+            // 要求实现函数体
+        }
+        var f1 = foo(1, 2, 3); f1.getValue(); // 6 输出是参数的和
+        var f2 = foo(1)(2, 3); f2.getValue(); // 6
+        var f3 = foo(1)(2)(3)(4); f3.getValue(); // 10
+
+        //实现如下
+
+        var foo = function (...args) {
+            const target = (...arg1s) => foo(...[...args, ...arg1s])
+            target.getValue = () => args.reduce((total, cur) => total + cur, 0)
+            return target
+        }
+
+        //柯里化就是 把接收多个参数的函数 变成 
+        //接收一个单一参数,并且返回一个 接收余下参数且返回结果的函数 的函数
+
+        //此题目中特殊的无非是，返回的是函数自己
+        //和 通过调用函数的一个方法来获得最后的结果
+
+    </script>
+</body>
+
+</html>

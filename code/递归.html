@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //99题
+        // 只修改这一行下面的代码
+        // function countdown(n) {
+
+        //     if (n < 1) {
+        //         return []
+        //     } else {
+        //         const result = []
+        //         result.push(n)
+        //         let res = result.concat(countdown(n - 1))
+        //         //使用 concat 返回一个新的数组
+        //         //不要用它再改变之前的数组
+        //         //直接给数组赋值改变它是会报错的！！
+        //         //let result = result.concat(countdown(n - 1))  报错
+        //         return res
+        //     }
+        // }
+
+        // let a = rangeOfNumbers(4, 6)
+
+        // console.log(a)
+
+
+        function rangeOfNumbers(startNum, endNum) {
+            if (startNum == endNum) {
+                let res = []
+                res.push(startNum)
+                return res
+            } else {
+                const result = []
+                result.push(startNum)
+                // let num = startNum+1
+                const res = result.concat(rangeOfNumbers(++startNum, endNum))
+                // console.log(res)
+                return res
+            }
+        };
+
+        let a = rangeOfNumbers(4, 6)
+
+        console.log(a)
+    </script>
+</body>
+
+</html>

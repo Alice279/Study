@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //方法
+
+        //array[Symbol.iterator]()
+        var arr = ['a','a','e']
+        var arr1 = arr[Symbol.iterator]()
+
+        console.log(arr1)
+        for (const letter of arr1) {
+            console.log(letter)
+        }
+        //上面这个for...of...循环输出了之后，下面的就会都输出 undefined
+        console.log(arr1.next().value)
+        console.log(arr1.next().value)
+        console.log(arr1.next().value)
+
+        //Array[Symbol.species]
+
+        //Array.prototype.concat()
+        //返回一个新数组，浅拷贝
+        //参数可以是数组，可以是值
+        var num1 = [[1], [2, 3]]
+        var num2 = [4, [5]]
+        var num = num1.concat(num2, 6)
+        console.log(num)
+
+        //Array.prototype.copyWithin()
+        //返回改变后的数组，改变原数组
+        //参数，目标位置不可以忽略，开始位置忽略为0，结束位置忽略为end
+        var copywith = [1,2,3,4,5]
+        copywith.copyWithin(-2, -3, -1)
+        console.log(copywith)
+
+        //Array.prototype.entries()
+        //arr.entries()
+        //for...of... 和 arr.entries()一起使用遍历键值对
+        var arr = [1,2,3,'x']
+        for(const e of arr.entries()) {
+            console.log(e)
+        }
+        for(const [key, value] of arr.entries()) {
+            console.log(key)
+        }
+
+        //Array.prototype.every()
+        //返回一个布尔值，
+        //空数组永远返回 true，跳过未被赋值的索引
+        console.log([1,2,3,36].every(x => x >= 10))
+
+        //Array.prototype.fill()
+        const array1 = [1, 2, 3, 4];
+        console.log(array1.fill(0, 2, 4))
+        console.log([].fill.call({ length: 3}, 4)) // {0: 4, 1: 4, 2: 4, length: 3}
+
+        //Array.pprototype.filter()
+        //对每一个元素执行参数函数，返回为 true 的元素们创建一个新数组返回
+        //可以用在，当数组里很多对象，各种属性，通过属性筛选数据
+        function isNumber(inputId) {
+            return inputId !== undefined && typeof(inputId) == 'number' && !isNaN(inputId)
+        }
+        function filterById(input) {
+            if(isNumber(input.id) && input.id !== 0) {
+                return true
+            }
+            return false
+        }
+        var result = arr.filter(filterById)
+
+        //Array.prototype.find()
+        //传入一个测试函数，返回第一个满足条件的元素值
+        //和 filter 一样，参数函数都是对元素返回 true or  false
+        //所以 find 和 filter 的区别就是：
+        //一个返回的是结果为 true 的所有元素的数组
+        //一个返回的是结果为 true 的第一个元素
+
+        //Array.prototype.findIndex()
+        //和 find 不同的是返回的是满足条件的第一个元素的索引
+
+        //Array.prototype.flat()
+        //返回一个新数组，以指定深度递归遍历数组，默认深度为 1
+        //使用 Infinity 是展开任意深度的嵌套数组
+        //注意，flat() 方法会移除数组中的空项
+        var arr1 = [1,2,,[4,[5]]]
+        console.log(arr1.flat(Infinity))
+        console.log(arr1)
+
+        //Array.prototype.flatMap()
+        //map 和 深度为 1 的 flat 相结合
+        //返回一个新数组，flatMap 的意义在于在 map 期间增加或去除一些项
+
+        //Array.prototype.forEach()
+        //此方法对数组的每个元素执行一次给定的函数
+        //并不一定改变数组，传入的函数参数可以是对数据进行操作，也可以是利用数据
+        function logElements(element, index, array) {
+            console.log('a[' + index +'] = ' + element)
+        }
+        [2,3,,7].forEach(logElements)//索引 2 会被跳过
+
+        //
+    </script>
+</body>
+</html>

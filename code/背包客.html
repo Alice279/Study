@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // //零钱兑换。
+        // //先遍历硬币，比如，第一个硬币，如果我全是这个硬币，那么凑成不同的规定值都需要多少个
+        // //到第二个硬币了，再遍历，我看看是之前只有第一个硬币的时候少，还是我加上第二个硬币少
+        // //依次类推
+
+        // let coins = [1,3,2,5];
+
+        // var coinChange = function (coins, amount) {
+        //     let dp = new Array(amount + 1).fill(Infinity);
+        //     dp[0] = 0;
+        //     for (let i = 0; i < coins.length; i++) {
+        //         for (let j = coins[i]; j <= amount; j++) {
+        //             console.log(dp[j]);
+        //             console.log(dp[j - coins[i]]);
+        //             dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+        //             console.log(i);
+        //             console.log(j);
+        //             console.log(dp[j]);
+        //             console.log('-------')
+        //         }
+        //     }
+        //     return dp[amount] === Infinity ? -1 : dp[amount];
+        // };
+
+        // coinChange(coins, 10);
+
+
+        // //创建二维数组
+        // let dp = new Array(2).fill(0).map(() => new Array(2).fill(0))
+        // //map之前一定要先赋值，不然map遍历不到它的
+        // let dp = new Array.from(Array(2), ()=> new Array(2).fill(0))
+        // //Array.from() 由一个可迭代对象生成一个新的数组实例
+
+
+        //======================================================================
+        //最长递增子序列
+        //其实就是从前面的数字开始，比如先看第二个数，前面有几个比自己小的
+        //然后第三个数，前面某位置的数是否比自己小，如果比自己小，
+        //那到自己为子序列末尾的子序列长度，就是以它为子序列末尾的那个值加上1
+
+
+        let LIS = [0,2,1,0,2,3];
+
+        const lengthOfLIS = (nums) => {
+            let dp = Array(nums.length).fill(1);
+            let result = 1;
+
+            for (let i = 1; i < nums.length; i++) {
+                for (let j = 0; j < i; j++) {
+                    if (nums[i] > nums[j]) {
+                        dp[i] = Math.max(dp[i], dp[j] + 1);
+                        console.log('i: ',i, 'j: ',j);
+                        console.log(dp[i])
+                    }
+                }
+                result = Math.max(result, dp[i]);
+            }
+
+            return result;
+        };
+
+        lengthOfLIS(LIS);
+
+    </script>
+</body>
+
+</html>

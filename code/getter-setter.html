@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 只修改这一行下面的代码
+        class Thermostat {
+            constructor(Ftem) {
+                this.Ftem = Ftem
+            }
+            get tem() {
+                this.Ctem = 5 / 9 * (this.Ftem - 32)
+                return this.Ctem
+            }
+            set tem(tem) {
+                this.Ctem = tem
+            }
+        }
+        // 只修改这一行上面的代码
+
+        const thermos = new Thermostat(76); // 设置为华氏刻度
+        let temp = thermos.temperature; // 24.44 摄氏度
+        console.log(tem)
+        thermos.temperature = 26;
+        temp = thermos.temperature; // 26 摄氏度
+    </script>
+</body>
+
+</html>

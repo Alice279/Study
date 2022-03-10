@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖</title>
+</head>
+
+<body>
+    <button id="btn">点我！</button>
+
+    <script>
+        let btn = document.getElementById('btn')
+
+        //照常写普通的事件响应函数
+        function sayhi() {
+            alert('防抖成功！')
+        }
+
+        //防抖函数能通用，相当于能给任意函数外包一个防抖的功能
+        //把想要添加防抖功能的函数作为参数传给防抖函数
+        //看下面触发事件那里，对于一个事件的响应，一定是对应一个回调函数，而不是回调函数的结果
+        //那里我们是执行了 debounce 函数，所以 debounce 里要返回的是一个函数
+        //其实是一个闭包，延时的标志 timeout 暴露在全局，如果把它写到闭包里，则是每次都生成一个独立的
+        //最终闭包里就是取消上次的 timeout 和生成新的延迟执行
+        //然后那个 apply 参数，确保 sayhi 函数的 this 指向实例对象，而不是指向 window
+        //如果不加 apply 来改变 this 指向，它真就指向 window，因为 this 是在运行是绑定的，而不是定义时
+        //当然了，除了箭头函数
+        function debounce(fn) {
+            let timeout = null
+            return function () {
+                clearTimeout(timeout)
+                timeout = setTimeout(() => {
+                    fn.apply(this, arguments)
+                }, 1000)
+            }
+        }
+
+        btn.addEventListener('click', debounce(sayhi))
+
+        //防抖就是，这个事件，触发之后 n 秒才会执行
+        //如果在这 n 秒之内再次触发，则重新计算时间
+
+        //关于防抖节流问题，还有升级版本
+        // https://github.com/mqyqingfeng/Blog/issues/22
+        // https://github.com/mqyqingfeng/Blog/issues/26
+    </script>
+</body>
+
+</html>

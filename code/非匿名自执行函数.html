@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非匿名自执行函数</title>
+</head>
+<body>
+    <script>
+        //判断输出结果
+        var b = 20
+        (function b() {
+            b = 10
+            console.log(b)
+        })()
+
+        //非匿名自执行函数的名字是只读的
+        //严格模式下会报错
+        //非严格模式下会输出函数体
+    </script>
+</body>
+</html>

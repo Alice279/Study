@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //三数之和
+        let nums = [-2, 0, 0, 2, 2]
+
+        var threeSum = function (nums) {
+            let len = nums.length;
+            if (len < 3) return [];
+            nums.sort((a, b) => a - b);
+            let end = len - 1;
+            let res = new Set();
+            for (let start = 0; start < len - 2; start++) {
+                if (nums[start] > 0) break;
+                let middle = start + 1;
+                while (middle < end) {
+                    const sum = nums[start] + nums[middle] + nums[end];
+                    if (sum < 0) {
+                        middle++;
+                    } else if (sum > 0) {
+                        end--;
+                    } else {
+                        res.add(`${nums[start]},${nums[middle]},${nums[end]}`)
+                        middle++;
+                        end--;
+                    }
+                }
+            }
+            console.log(res);
+            return Array.from(res).map(i => i.split(","));
+        };
+
+        let res = threeSum(nums);
+        console.log(res);
+
+        //这个题目告诉我的道理是，set去重，是比较的栈里的内容，
+        //对于引用类型的数据，是无法去重的，即使里面数据相同，因为地址不同，也会识别为不同
+        // 32 行很牛，当我们就是想对二位数据去重，可以把内层的数组写成字符串，但是里面的还是原本的数据类型
+        // 如果你要是用jion方法就不行，整个内层数组，包括里面的数字，都会变成字符串
+
+
+
+        //环形链表
+        var detectCycle = function (head) {
+            if (!head || !head.next) return null
+            let slow = head, fast = head;
+            while (fast) {
+                slow = slow.next;
+                if (fast.next) {
+                    fast = fast.next.next;
+                } else {
+                    return null
+                }
+                if (fast == slow) {
+                    let res = head;
+                    while (res !== slow) {
+                        slow = slow.next;
+                        res = res.next;
+                    }
+                    return res
+                }
+            }
+            return null
+        };
+
+        //这道题就是要注意，fast 和 slow 是在环内相遇，而不是环的初始节点
+        //slow 从相遇点走到初始节点的距离，等同于头结点走到初始结点的距离
+
+
+        //删除链表的第N个结点
+        var removeNthFromEnd = function (head, n) {
+            //当犹豫头结点的操作时，应该构建新的链表，向前延长一位置
+            let ret = new ListNode(0, head);
+            let slow = fast = ret;
+            for (let i = 0; i < n; i++) {
+                fast = fast.next
+            }
+            while (fast.next) {
+                fast = fast.next;
+                slow = slow.next;
+            }
+            slow.next = slow.next.next;
+            return ret.next
+        };
+    </script>
+</body>
+
+</html>

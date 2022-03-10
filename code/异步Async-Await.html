@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异步Async-Await</title>
+</head>
+
+<body>
+    <script>
+        //分析判断执行时间
+
+        function wait() {
+            return new Promise(resolve =>
+                setTimeout(resolve, 10 * 1000)
+            )
+        }
+
+        async function main() {
+            console.time();
+            const x = wait();         // x, y, z 同时异步执行
+            const y = wait();
+            const z = wait();
+            await x;
+            await y;
+            await z;
+            console.timeEnd();        // 10000ms
+
+            console.time();
+            const x1 = await wait();  // x1, y1, z1 按顺序异步执行
+            const y1 = await wait();
+            const z1 = await wait();
+            console.timeEnd();        // 30000ms
+
+            console.time();
+            const x2 = wait();        // x2, y2, z2 同步执行
+            const y2 = wait();
+            const z2 = wait();
+            console.timeEnd();        // 0ms
+
+        }
+        main();
+    </script>
+</body>
+
+</html>

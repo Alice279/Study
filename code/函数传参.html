@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数传参</title>
+</head>
+<body>
+    <script>
+        //判断输出
+
+        function changeObjProperty(o) {
+            o.siteUrl = "http://www.baidu.com"
+            o = new Object()
+            o.siteUrl = 'http://www.google.com'
+        }
+        let webSite = new Object()
+        changeObjProperty(webSite)
+        console.log(webSite.siteUrl)
+
+        //函数的形参 传递基本类型是传递值 传递引用类型是传递引用
+        // webSite 指向一个对象，调用函数时，将 webSite 引用地址的值传递给形参
+        // 形参在指向的对象里添加了属性和属性值
+        // 然后形参 o 指向了新的地址，以后的变动和旧对象无关
+        // 输出时 webSite 还是指向的旧对象
+        // 输出 http://www.baidu.com
+
+    </script>
+</body>
+</html>

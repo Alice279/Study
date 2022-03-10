@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //https://zh.javascript.info/task/filter-through-function
+
+        //inBetween筛选器
+        function inBetween(a, b) {
+            return function (x) {
+                return x >= a && x <= b;
+            };
+        }
+
+        let arr = [1, 2, 3, 4, 5, 6, 7];
+        alert(arr.filter(inBetween(3, 6))); // 3,4,5,6
+
+        //inArray筛选器
+        function inArray(arr) {
+            return function (x) {
+                return arr.includes(x);
+            };
+        }
+
+        let arr = [1, 2, 3, 4, 5, 6, 7];
+        alert(arr.filter(inArray([1, 2, 10]))); // 1,2
+
+
+
+        function byField(str) {
+            return (a, b) => {
+                a[str] - b[str]
+            }
+        }
+        users.sort(byField('name'))
+    </script>
+</body>
+
+</html>

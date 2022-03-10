@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = {
+            Alan: {
+                online: false
+            },
+            Jeff: {
+                online: true
+            },
+            Sarah: {
+                online: false
+            }
+        }
+        function countOnline(usersObj) {
+            // 只修改这一行下面的代码
+            let count = 0
+            for (const obj in usersObj) {
+                console.log(obj)
+                console.log(usersObj[obj]['online'])
+                console.log(usersObj[obj].online)
+
+                // console.log(usersObj.obj.online)   这个就会报错，
+                //obj 是一个变量，必须用 [] 
+                //而 online Alan 这些是字符串，要么直接用 . 要么在 [] 里写字符串
+                
+                // if (obj.online == true) {
+                //     count += 1
+                // }
+                // for in 遍历的是键值对里的 键 ，返回的是字符串
+
+                if (usersObj[obj].online == true) {
+                    count += 1
+                }
+            }
+            return count
+            // 只修改这一行上面的代码
+        }
+
+        let result = countOnline(user)
+        console.log(result)
+    </script>
+</body>
+
+</html>

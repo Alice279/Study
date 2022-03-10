@@ -13,7 +13,8 @@ function multiRequest(urls = [], maxNum) {
             // next 里面是异步代码，所以第一轮事件循环里会连续发出 maxNum 个请求 
         }
         function next() {
-            let current = count++;
+            let current = count;
+            count++;
             // 处理边界条件
             if (current >= len) {
                 // 请求全部完成就将promise置为成功状态, 
@@ -148,3 +149,25 @@ sendRequest(urls, limit, function () {
 // 在 Promise.all 的数组里。就只有那 5 个
 // 问题： 那如果中间某次请求有错误怎么办？    .finally
 
+
+
+//    [].map(()=> return new Promise())
+
+function controlRequest (urls, maxNumber) {
+    const res = [];
+    while(maxNumber--) {
+        let url = urls.shift();
+        res.push(getRequest(url));
+    }
+
+    const getRequest = (url) => {
+        axios.get(url)
+            .finally(() => {
+                if (urls.length) {
+                    let url = urls.shift();
+                    res.push(getRequest(url));
+                }
+            })
+    }
+    return Promise.all(res);
+}

@@ -1,29 +1,29 @@
-//遍历二叉树
-//深度 先序
-let res = []
-function depth (node) {
-    if (!node) return null
-    if (node) {
-        res.push(node)
-        depth(node.left)
-        depth(node.right)
+const permute = (nums) => {
+    const res = [];
+    const used = {};
+
+    function dfs(path) {
+        console.log('dfs')
+        if (path.length == nums.length) { // 个数选够了
+            res.push(path.slice()); // 拷贝一份path，加入解集res
+            return;                 // 结束当前递归分支
+        }
+        for (const num of nums) { // for枚举出每个可选的选项
+            // if (path.includes(num)) continue; // 别这么写！查找是O(n)，增加时间复杂度
+            if (used[num]) continue; // 使用过的，跳过
+            path.push(num);         // 选择当前的数，加入path
+            used[num] = true;       // 记录一下 使用了
+            console.log(path)
+            dfs(path);              // 基于选了当前的数，递归
+            path.pop();             // 上一句的递归结束，回溯，将最后选的数pop出来
+            console.log(path)
+            used[num] = false;      // 撤销这个记录
+        }
     }
-}
-depth(root)
 
+    dfs([]); // 递归的入口，空path传进去
+    return res;
+};
 
-
-//广度
-let res = []
-let stach = []
-const bfs = function(node) {
-    if (!node) return null
-    stach.push(node)
-    while(stach.length) {
-        let item = stach.shift()
-        res.push(item)
-        if (item.left) stach.push(item.left)
-        if (item.right) stach.push(item.right)
-        
-    }
-}
+const res = permute([1,2,3])
+console.log(res)

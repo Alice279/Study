@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //有一个可以上下移动的 ladder 对象：
+        let ladder = {
+            step: 0,
+            up() {
+                this.step++;
+            },
+            down() {
+                this.step--;
+            },
+            showStep: function () { // 显示当前的 step
+                alert(this.step);
+            }
+        };
+        //现在，如果我们要按顺序执行几次调用，可以这样做
+        ladder.up();
+        ladder.up();
+        ladder.down();
+        ladder.showStep(); // 1
+        ladder.down();
+        ladder.showStep(); // 0
+        //修改 up，down 和 showStep 的代码，让调用可以链接，就像这样：
+        ladder.up().up().down().showStep().down().showStep(); // 展示 1，然后 0
+        //修改如下
+        let ladder = {
+            step: 0,
+            up() {
+                this.step++;
+                return this;
+            },
+            down() {
+                this.step--;
+                return this;
+            },
+            showStep() {
+                alert(this.step);
+                return this;
+            }
+        };
+
+    </script>
+</body>
+
+</html>

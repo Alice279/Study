@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //案例来源：https://zh.javascript.info/task/calculator-extendable
+        function Calculator() {
+            this.methad = {
+                '+': (a, b) => a + b,
+                '-': (a, b) => a - b,
+            }
+            this.calculate = (str) => {
+                let nums = str.split(' ');
+                let a = nums[0];
+                let b = nums[1];
+                let c = nums[2];
+                if (!this.methad[b] || isNaN(a) || isNaN(b)) {
+                    return NaN;
+                }
+                return this.methad[b](a, b);
+            }
+            this.addMethod = (name, func) => {
+                this.methad[name] = func;
+            }
+        }
+
+        //https://zh.javascript.info/array-methods#chuang-jian-yi-ge-ke-kuo-zhan-de-calculator
+        //这一页的案例都非常不错，数组的方法
+
+        //https://zh.javascript.info/map-set
+        //这一页也是，map set的使用
+
+        let names = users.map(item => item.name)
+
+        let usersMapped = users.map(item => item.fullName = item.name + ' '+ item.surname)
+
+        let sortByAge = (arr) => {
+            arr.sort((item1, item2) => item1.age - item2.age)
+        }
+
+        let shuffle = (arr) => {
+            arr.sort(() => Math.random() - 0.5)
+        }
+
+        const getAvAge = (arr) => {
+            let age = arr.reduce((sum, item) => sum + item.age)
+            return age / arr.length
+        }
+
+        const groupById = (arr) => {
+            const obj = {};
+            arr.forEach((item) => obj[item.id] = item)
+            return obj
+        }
+
+        const groupById = (arr) => {
+            return arr.reduce((obj, item) => {
+                obj[item.id] = item
+                return obj
+            }, {})
+        }
+
+        //https://zh.javascript.info/keys-values-entries
+        //这一页的案例都非常不错，对象的方法
+
+        const sum = (salaries) => {
+            let res = 0;
+            for (const item of Object.values(salaries)) {
+                res += item;
+            }
+            return res
+        }
+
+        const top = (obj) => {
+            let max = 0;
+            let maxName;
+            for (const [key, value] of Object.entries(obj)) {
+                if (value > max) {
+                    maxName = key;
+                    max = value;
+                }
+            }
+            return maxName
+        }
+    </script>
+</body>
+</html>
