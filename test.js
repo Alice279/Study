@@ -1,29 +1,20 @@
-const permute = (nums) => {
-    const res = [];
-    const used = {};
-
-    function dfs(path) {
-        console.log('dfs')
-        if (path.length == nums.length) { // 个数选够了
-            res.push(path.slice()); // 拷贝一份path，加入解集res
-            return;                 // 结束当前递归分支
+const size = readline().split(' ');
+const n = size[0];
+const k = size[1];
+// const res = Array.from(Array(n * k), () => Array(n * k).fill(0));
+const res = [];
+for (let i = 0; i < n; i++) {
+    const px = readline().split(' ');
+    let point = k;  ///k层
+    while (point) {
+        //1层
+        const ceng = [];
+        for (let j = 0; j < n; j++) {
+            ceng.push(...Array(k).fill(px[j]));
+            res.push(ceng);
         }
-        for (const num of nums) { // for枚举出每个可选的选项
-            // if (path.includes(num)) continue; // 别这么写！查找是O(n)，增加时间复杂度
-            if (used[num]) continue; // 使用过的，跳过
-            path.push(num);         // 选择当前的数，加入path
-            used[num] = true;       // 记录一下 使用了
-            console.log(path)
-            dfs(path);              // 基于选了当前的数，递归
-            path.pop();             // 上一句的递归结束，回溯，将最后选的数pop出来
-            console.log(path)
-            used[num] = false;      // 撤销这个记录
-        }
+        point--;
     }
+}
 
-    dfs([]); // 递归的入口，空path传进去
-    return res;
-};
-
-const res = permute([1,2,3])
-console.log(res)
+print(res)

@@ -1,0 +1,41 @@
+
+.carousel {
+    /* width: 250px; */
+}
+
+.carousel-top {
+    display: flex;
+    align-items: center;
+}
+
+.carousel-top>div {
+    cursor: pointer;
+}
+
+.images img {
+    width: 250px;
+    height: 250px;
+}
+
+.gallery {
+    width: 250px;
+    height: 250px;
+    margin: 0 20px;
+    overflow: hidden;
+
+    position: relative;
+}
+
+.gallery ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 1750px;
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    transition: left 250ms;
+}
+
