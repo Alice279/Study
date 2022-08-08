@@ -8,6 +8,32 @@ Function.prototype.myCall = function(context = window, ...args) {
     return result
 }
 
+Function.prototype.call11 = function(context = window, ...args) {
+    context = context || window;
+    context.fn = this;
+    const result = context.fn(...args);
+    delete this;
+    return result;
+}
+
+Function.prototype.apply11 = function(context = window, args = []) {
+    context = context || window;
+    context.fn = this;
+    const result = context.fn(...args);
+    delete context.fn;
+    return result;
+}
+
+Function.prototype.bind11 = function(context, ...args) {
+    const _this = this;
+    return function Bind(...newArgs) {
+        if (this instanceof Bind) {
+            return _this.apply(this, [...args, ...newArgs]);
+        }
+        return _this.apply(context, [...args, ...newArgs]);
+    }
+}
+
 Function.prototype.myApply = function(context = window, args = []) {
     context = context || window
     context.fn = this
@@ -25,7 +51,7 @@ Function.prototype.myBind = function(context, ...args) {
         return _this.myApply(context, [...args, ...newArgs])
     }
 }
-// bind 函数可以作为构造函数使用，当 bind 函数生成实例时，this 应该指向生成的实例
+// bind 返回的函数可以作为构造函数使用，当 bind 函数生成实例时，this 应该指向生成的实例
 //嘤嘤嘤，这句话超级重要！！！
 
 //===================================================================
@@ -92,3 +118,17 @@ Function.prototype.bind2 = function (context) {
     fBound.prototype = new fNOP()
     return fBound
 }
+
+obj1 = {
+    name: 'obj1'
+}
+
+obj2 = {
+    name: 'obj2'
+}
+
+function print() {
+    console.log(this.name);
+}
+
+print.bind(obj2).call(obj1);

@@ -1,74 +1,59 @@
-const async1 = async () => {
-    console.log('async1');
-    setTimeout(() => {
-        console.log('timer1')
-    }, 2000)
-    await new Promise(resolve => {
-        console.log('promise1')
-    })
-    console.log('async1 end')
-    return 'async1 success'
+// const async1 = async () => {
+//     console.log('async1');
+//     setTimeout(() => {
+//         console.log('timer1')
+//     }, 2000)
+//     await new Promise(resolve => {
+//         console.log('promise1')
+//     })
+//     console.log('async1 end')
+//     return 'async1 success'
+// }
+
+// console.log('script start');
+
+
+// async1().then(res => console.log(res));
+
+
+// console.log('script end');
+
+
+// Promise.resolve(1)
+//     .then(2)
+//     .then(Promise.resolve(3))
+//     .catch(4)
+//     .then(res => console.log(res))
+
+
+// setTimeout(() => {
+//     console.log('timer2')
+// }, 1000)
+
+
+// script start
+// async1
+// promise1
+// script end
+// 1
+// timer2
+// timer1
+
+
+const obj = {
+	a: 1,
+	b: '2',
+	c: [], // x
+	d: {
+		aa: 1,
+		bb: '2',
+		cc: '',  // x
+		dd: {},  // x
+		ee: 0,
+	},
+	e: {},  // x
 }
 
-console.log('script start');
-
-
-async1().then(res => console.log(res));
-
-
-console.log('script end');
-
-
-Promise.resolve(1)
-    .then(2)
-    .then(Promise.resolve(3))
-    .catch(4)
-    .then(res => console.log(res))
-
-
-setTimeout(() => {
-    console.log('timer2')
-}, 1000)
-
-
-//  script start
-//  async1
-//  promise1
-//  async1 end
-//  script end
-//  async1 success
-//  1
-//  timer2
-//  timer1
-
-
-
-
-
-
-
-//  timer2
-//  timer1
-
-
-
-//  async1 success
-//  1
-
-
-// const obj = {
-// 	a: 1,
-// 	b: '2',
-// 	c: [], // x
-// 	d: {
-// 		aa: 1,
-// 		bb: '2',
-// 		cc: '',  // x
-// 		dd: {},  // x
-// 		ee: 0,
-// 	},
-// 	e: {},  // x
-// }
 
 // function filter(data) {
 // 	for (const item of Object.keys(data)) {
@@ -88,9 +73,9 @@ setTimeout(() => {
 //     }
 // }
 
-// filter(obj);
+filter(obj);
 
-// console.log(obj)
+console.log(obj)
 
-// // Object.prototype.toString() == ['Object Object']
+// // Object.prototype.toString() == ['object Object']
 // // console.log(obj instanceof obj)

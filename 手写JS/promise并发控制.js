@@ -153,6 +153,8 @@ sendRequest(urls, limit, function () {
 
 //    [].map(()=> return new Promise())
 
+
+//四
 function controlRequest (urls, maxNumber) {
     const res = [];
     while(maxNumber--) {

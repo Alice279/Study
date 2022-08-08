@@ -45,9 +45,27 @@
             }
 
             //组件挂载完毕
-            componentWillMount(){
-
+            componentDidMount(){
+                this.setState({ count: this.state.count + 1 });
+                console.log("console: " + this.state.count); // 0
+                this.setState({ count: this.state.count + 1 }, () => {
+                    console.log("console from callback: " + this.state.count); // 2
+                });
+                this.setState(prevState => {
+                    console.log("console from func: " + prevState.count); // 1
+                    return {
+                        count: prevState.count + 1
+                    };
+                }, ()=>{
+                    console.log('last console: '+ this.state.count)
+                });
             }
+            //组件挂载完毕输出：
+            // console: 0 
+            // console from func: 1 
+            // console from callback: 2
+            // last console: 2 
+
 
             //组件将要卸载
             componentWillUnmount(){

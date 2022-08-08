@@ -49,7 +49,7 @@ const errors = results
 
 // Promise.resolve() 将现有对象转化为 Promise 对象
 // 参数的四种情况：
-// 1. 参数是一个 Promise 实例
-// 2. 参数是一个 thenable 对象
-// 3. 参数是没有 then 方法的对象，或者不是对象
-// 4. 没有参数
+// 1. 参数是一个 Promise 实例，直接返回
+// 2. 参数是一个 thenable 对象，将该对象转化为 promise 对象并立即执行 then 方法
+// 3. 参数是没有 then 方法的对象，或者不是对象，返回一个 resolved 状态的 promise 对象
+// 4. 没有参数，返回一个 resolved 状态的 promise 对象

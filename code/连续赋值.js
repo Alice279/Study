@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script>
+
         //判断输出
 
         var a = {n: 1}
@@ -33,6 +24,3 @@
         // { "base": a, "name": x, ...}，但是仅仅有这样一个结构，并不存在，里面的 a 是现在 a 指向的对象 {n: 1}
         // 然后真实的引用 a 指向一个新的对象 {n: 2}，没有 x 属性
         // 然后 a.x = {n: 2}，就为原来 a 指向的的那个对象创建了一个 x 属性 { n: 1, x: {n: 2}}，而这时候 b 还指向它
-    </script>
-</body>
-</html>

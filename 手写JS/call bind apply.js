@@ -17,3 +17,9 @@ Function.prototype.apply = function(context = window, args = []) {
 //bind我不会呜呜呜
 
 
+Function.prototype.myBind = function(thisArg, ...prefixArgs) {
+    const fn = this;
+    return function(...args) {
+      return fn.call(thisArg, ...prefixArgs, ...args);
+    }
+}

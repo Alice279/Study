@@ -24,3 +24,17 @@ c.fun(3)
 //undefined 0  c = fun(1, 0) = {fun: function}
 //fun(2, 1)  1
 //fun(3, 1)  1
+
+
+
+function createIncrementor(start) {
+    return function () {
+      return start++;
+    };
+  }
+  
+  var inc = createIncrementor(5);
+  
+  inc() // 5
+  inc() // 6
+  inc() // 7 

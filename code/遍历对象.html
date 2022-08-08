@@ -9,11 +9,13 @@
 <body>
     <script>
         const obj = {'123':123};
+
         for (const item in obj) {
             if (item) {
                 console.log('true')
             }
         }
+
         if (Object.keys(obj).length == 0) {
             console.log('false')
         }

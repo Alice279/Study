@@ -15,7 +15,7 @@ const shool = {
 
 //ES6简化对象写法
 
-const shool = {
+const shool1 = {
     name,
     change,
     improve(){

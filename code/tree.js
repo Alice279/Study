@@ -1,5 +1,5 @@
 //深度优先遍历  先序
-let result = []
+let result1 = []
 let dfs = function (node) {
     if (!node) return null
     if (node) {
@@ -11,7 +11,7 @@ let dfs = function (node) {
 dfs(tree)
 
 //广度优先遍历
-let result = []
+let result2 = []
 let stack = [tree]
 let count = 0
 let bfs = function () {

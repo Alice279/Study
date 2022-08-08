@@ -41,3 +41,18 @@ function Person(name, age) {
     }
 }
 var p1 = new Person('Tom', 12)
+
+// 类数组对象 arguments
+// 将类数组对象转化为数组
+// 
+const nums = Array.prototype.slice.call(arguments)
+//
+const nums1 = [];
+for (let i = 0; i < arguments.lengthl; i++) {
+    nums1.push(arguments[i])
+}
+// 因为人家是类数组对象，有数组的一些属性，可以遍历，有length属性
+
+
+Object.prototype.toString.call()    [object, Object]
+// 第一个 object 表示类型；第二个 Object 表示是由哪个构造函数构造出来的

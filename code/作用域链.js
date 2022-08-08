@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <script>
 
         ////////////////////////////////////
         var a = 20;
@@ -34,7 +23,3 @@
 
         sayHi();  //////err
         ////因为sayHi()函数是在if里面的，if外部没有该函数
-    </script>
-</body>
-
-</html>
