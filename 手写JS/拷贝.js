@@ -32,15 +32,12 @@ function deepClone(obj) {
     return objClone;
 }
 
-objClone = JSON.parse(JSON.stringify(obj))
-
-
-
+// objClone = JSON.parse(JSON.stringify(obj))
 
 function deepClone(obj) {
     let objClone = Array.isArray(obj) ? [] : {};
     if (obj && typeof obj === 'object') {
-        for (let key of obj) {
+        for (const key in obj) {
             if (obj[key] && typeof obj[key] === 'object') {
                 objClone[key] = deepClone(obj[key]);
             } else {
@@ -51,32 +48,53 @@ function deepClone(obj) {
     return objClone;
 }
 
-objClone = JSON.parse(JSON.stringify(obj)); 
-
 
 // 深浅拷贝的实现，深拷贝循环拷贝的解决
 // 用 哈希表 检测当前对象是否已经拷贝过，是的话直接返回该对象
+// 这个里面不用数组对象分的那么细，for...in 用于遍历对象，数组也是对象呀
 const obj = {};
 let hashMap = new WeakMap();
+
+// let hashMap = new WeakMap();
 function deepCloneCircle(obj, hashMap) {
+
+    if (hashMap.has(obj)) {
+        console.log('alice0', obj, hashMap.get(obj), hashMap)
+        return hashMap.get(obj);
+    }
+
     const objClone = Array.isArray(obj) ? [] : {};
-    if (hashMap.has(obj)) return hashMap.get(obj);
+
+    hashMap.set(obj, objClone);
+
     if (obj && typeof obj === 'object') {
-        if (Object.prototype.toString.call(obj) === '[object Array]') {
-            hashMap.set(obj, objClone);
-            obj.forEach(item => {
-                objClone.push(deepCloneCircle(item, hashMap));
-            })
-        } else {
-            hashMap.set(obj, objClone);
-            for (let key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    objClone[key] = deepCloneCircle(obj[key], hashMap);
-                }
+        for (const key in obj) {
+            if (obj[key] && typeof obj[key] === 'object') {
+                objClone[key] = deepCloneCircle(obj, hashMap);
+            } else {
+                objClone[key] = obj[key];
             }
         }
-    } else {
-        objClonev = obj;
     }
     return objClone;
 }
+
+ 
+const arr1 = ['dd', 'ee', 'ff'];
+for (const key in arr1) {
+    console.log(key);
+    console.log(arr1[key])
+}
+
+const obj1 = {
+    a: '123',
+    b: {
+        c: '456',
+        d: '789'
+    }
+}
+obj1.e = obj1;
+
+const res = deepCloneCircle(obj1, hashMap);
+
+console.log('alice', res);
