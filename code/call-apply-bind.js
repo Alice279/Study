@@ -8,32 +8,6 @@ Function.prototype.myCall = function(context = window, ...args) {
     return result
 }
 
-Function.prototype.call11 = function(context = window, ...args) {
-    context = context || window;
-    context.fn = this;
-    const result = context.fn(...args);
-    delete this;
-    return result;
-}
-
-Function.prototype.apply11 = function(context = window, args = []) {
-    context = context || window;
-    context.fn = this;
-    const result = context.fn(...args);
-    delete context.fn;
-    return result;
-}
-
-Function.prototype.bind11 = function(context, ...args) {
-    const _this = this;
-    return function Bind(...newArgs) {
-        if (this instanceof Bind) {
-            return _this.apply(this, [...args, ...newArgs]);
-        }
-        return _this.apply(context, [...args, ...newArgs]);
-    }
-}
-
 Function.prototype.myApply = function(context = window, args = []) {
     context = context || window
     context.fn = this

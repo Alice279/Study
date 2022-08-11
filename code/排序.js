@@ -12,6 +12,25 @@ var sortArray = function(nums) {
     return nums
 };
 
+// 快速排序
+function quickSort(nums) {
+    const len = nums.length;
+    if (len < 2) return nums;
+    const left = [];
+    const right = [];
+    const pivotIndex = Math.floor(len / 2);
+    const pivot = nums.splice(pivotIndex, 1);
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] < pivot) {
+            left.push(nums[i]);
+        } else {
+            right.push(nums[i]);
+        }
+    }
+    return quickSort(left).concat([pivot], quickSort(right));
+}
+
+
 // 选择
 function sort2(nums) {
     for(let i = 0, len = nums.length; i< len-1; i++) {

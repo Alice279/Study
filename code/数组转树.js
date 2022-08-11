@@ -21,7 +21,27 @@ const nums = [
     }
 ]
 
-// ////////////////////////////////////
+// function arrToTree(id, data) {
+//     const res = [];
+//     const children = data.filter(item => {return item.parentId === id});
+//     for (const child of children) {
+//         const [id, text, parentId] = child;
+//         const childPre = {
+//             id,
+//             text,
+//             parentId
+//         }
+//         const hasChild = data.filter((item) => item.parentId === child.id).length
+//         const obj = hasChild ? {...childPre, children: arrToTree(child.id, data)} : objPre;
+//         res.push(obj);
+//     }
+//     return res;
+// }
+
+// const tree1 = JSON.stringify(arrToTree(nums, 0));
+// console.log(tree1);
+
+// //////////////////////////////////////////
 
 function listToTree(data) {
     let temp = {};
@@ -64,3 +84,7 @@ function listToTree2 (parentId, arr) {
     }
     return res;
 }
+
+
+const tree1 = JSON.stringify(listToTree2(nums, 0));
+console.log(tree1);

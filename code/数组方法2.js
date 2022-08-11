@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <script>
         // 全局变量
         // 求数组里否符合要求的若干对象的某属性的平均值
         const watchList = [
@@ -187,7 +176,3 @@
         const arr = ['ddd']
         let result  = arr.concat(['fff'])
         console.log(result)
-    </script>
-</body>
-
-</html>

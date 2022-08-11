@@ -96,7 +96,7 @@ sendRequest(urls, limit1, function () {
     console.log('finish')
 });
 
-//三
+//三  使用 setTimeout 进行验证
 var urls = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 const limit = 5;
 
@@ -163,11 +163,13 @@ function controlRequest (urls, maxNumber) {
     }
 
     const getRequest = (url) => {
-        axios.get(url)
+        return axios.get(url)
             .finally(() => {
                 if (urls.length) {
-                    let url = urls.shift();
-                    res.push(getRequest(url));
+                    if (urls.length) {
+                        let url = urls.shift();
+                        return getRequest(url);
+                    }
                 }
             })
     }

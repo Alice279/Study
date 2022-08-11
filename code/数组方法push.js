@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-    <script>
         //判断输出
 
         var obj = {
@@ -37,7 +26,3 @@
        // push 方法根据 length 属性来决定从哪里开始插入给定的值
        // 如果 length 不能被转成一个数值，则从索引 0 开始插入
        // 如果根本没有 length 则创建它并从 0 开始
-    </script>
-</body>
-
-</html>

@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script>
+
         //方法
 
         //array[Symbol.iterator]()
@@ -33,7 +24,7 @@
         var num = num1.concat(num2, 6)
         console.log(num)
 
-        //Array.prototype.copyWithin()
+        //Array.prototype.copyWithin(target, start, end)
         //返回改变后的数组，改变原数组
         //参数，目标位置不可以忽略，开始位置忽略为0，结束位置忽略为end
         var copywith = [1,2,3,4,5]
@@ -61,7 +52,7 @@
         console.log(array1.fill(0, 2, 4))
         console.log([].fill.call({ length: 3}, 4)) // {0: 4, 1: 4, 2: 4, length: 3}
 
-        //Array.pprototype.filter()
+        //Array.prototype.filter()
         //对每一个元素执行参数函数，返回为 true 的元素们创建一个新数组返回
         //可以用在，当数组里很多对象，各种属性，通过属性筛选数据
         function isNumber(inputId) {
@@ -78,7 +69,7 @@
         //Array.prototype.find()
         //传入一个测试函数，返回第一个满足条件的元素值
         //和 filter 一样，参数函数都是对元素返回 true or  false
-        //所以 find 和 filter 的区别就是：
+        //所以 filter 和 find 的区别就是：
         //一个返回的是结果为 true 的所有元素的数组
         //一个返回的是结果为 true 的第一个元素
 
@@ -110,6 +101,3 @@
         // 先用 Object.entries() 将对象转化为键值对数组
         // 然后使用数组方法
         // 最后再 Object.fromEntries() 转化为对象
-    </script>
-</body>
-</html>

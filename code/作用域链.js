@@ -8,7 +8,7 @@
             return a;
         }
         fn(a);
-        console.log(a); // 20
+        console.log(a); // 30
 
         ////////////////////////////////////
         let phrase = "Hello";
@@ -17,9 +17,8 @@
             let user = "John";
 
             function sayHi() {
-                alert(`${phrase}, ${user}`);
+                console.log(`${phrase}, ${user}`);
             }
         }
 
-        sayHi();  //////err
-        ////因为sayHi()函数是在if里面的，if外部没有该函数
+        sayHi();  ////// Hello, John 

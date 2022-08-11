@@ -17,6 +17,30 @@ async function sumAsync(a, b) {
     })
 }
 
+// async function sumAsync(a, b) {
+//     return await new Promise((resolve, reject) => {
+//         asyncAdd(a, b, (err, res) => {
+//             if (!err) {
+//                 resolve(res);
+//             }
+//             reject(err)
+//         })
+//     }) 
+// }
+
+const arr0 = [1, 2, 3, 4]
+
+async function sumAsync11(...args) {
+    return await new Promise((resolve, reject) => {
+        args.reduce((pre, cur) => {
+            console.log(pre)
+            pre.then(res => sumAsync(res, cur))
+        }, Promise.resolve(0))
+    }) 
+}
+
+// const res0 = sumAsync11(...arr0);
+// console.log('alice', res0);
 
 //考虑一下多数之和
 //多数之和  Array 的 reduce 方法。不一定是求和才想到这个方法
@@ -42,3 +66,8 @@ function sum(...args) {
     })
 }
 
+const res0 = sum(...arr0);
+console.log('alice', res0);
+
+
+//   https://cloud.tencent.com/developer/article/1842626

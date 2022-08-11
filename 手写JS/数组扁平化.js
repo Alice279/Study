@@ -6,7 +6,7 @@ const res1 = arr.flat(Infinity);
 //方法二：使用reduce()
 const flatten2 = (arr) => {
     return arr.reduce((pre, cur) => {
-        return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
+        return pre.concat(Array.isArray(cur) ? flatten2(cur) : cur);
     }, []);
 }
 

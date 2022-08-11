@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>函数传参</title>
-</head>
-<body>
-    <script>
+
     // 得到航班信息查询结果后的回调函数
     var flightHandler = function(data){
         alert('你查询的航班结果是：票价 ' + data.price + ' 元，' + '余票 ' + data.tickets + ' 张。');
@@ -18,7 +9,4 @@
     var script = document.createElement('script');
     script.setAttribute('src', url);
     // 把script标签加入head，此时调用开始
-    document.head.appendChild(script); 
-    </script>
-</body>
-</html>
+    document.head.appendChild(script);
