@@ -10,3 +10,5 @@
     script.setAttribute('src', url);
     // 把script标签加入head，此时调用开始
     document.head.appendChild(script);
+
+    // 服务端返回的 js 代码是对这个回调函数的调用

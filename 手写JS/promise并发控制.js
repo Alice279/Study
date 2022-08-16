@@ -166,10 +166,8 @@ function controlRequest (urls, maxNumber) {
         return axios.get(url)
             .finally(() => {
                 if (urls.length) {
-                    if (urls.length) {
-                        let url = urls.shift();
-                        return getRequest(url);
-                    }
+                    let url = urls.shift();
+                    return getRequest(url);
                 }
             })
     }

@@ -184,3 +184,15 @@ Promise.race = function(promises) {
         }
     })
 }
+
+Promise.resolve = function(value) {
+    return new Promise((resolve,reject) => {
+        resolve(value);
+    })
+}
+
+Promise.reject = function(reason) {
+    return new Promise((resolve, reject) => {
+        reject(reason);
+    })
+}

@@ -7,7 +7,7 @@ new Promise((resolve, reject) => {
 })
 // resolve 也是同步执行的
 // resolve 中如果是函数，就是先执行这个函数，把函数的返回结果传递给 then
-// 一般来说，resolve 或者 reject 之后 Promise 的时命就完成了，后面不会有语句
+// 一般来说，resolve 或者 reject 之后 Promise 的使命就完成了，后面不会有语句
 // 如果想让后面的语句不执行，在 resolve  前面加上 return
 
 // 其实 这个例子中 value() 是会报错的，因为 value 根本不是函数

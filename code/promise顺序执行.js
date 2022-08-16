@@ -25,6 +25,14 @@ function promise_queue(list, index) {
 }
 promise_queue(list, 0)
 
+function promise_que(list, index) {
+    if (index >= 0 && index < list.length) {
+        list[index]().then(() => {
+            promise_que(list, index + 1);
+        })
+    }
+}
+
 // 解法2：使用 await & async
 async function promise_queue(list) {
     let index = 0
@@ -34,6 +42,14 @@ async function promise_queue(list) {
     }
 }
 promise_queue(list)
+
+async function promise_que(list) {
+    let index = 0;
+    while(index >= 0 && index <= list.length) {
+        await list[index]();
+        index++;
+    }
+}
 
 // 解法2-1：还是使用 await 和 async
 async function queue(arr) {
@@ -64,7 +80,8 @@ function promise_queue(list) {
     return new Promise(resolve => {
         list.reduce((pre, cur) => {
             return pre.then(() => {
-                cur()
+                cur();
+                resolve();
             })
         }, Promise.resolve())
     })

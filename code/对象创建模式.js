@@ -42,6 +42,36 @@ function Person(name, age) {
 }
 var p1 = new Person('Tom', 12)
 
+
+//原型链模式
+function Person0() {}
+Person0.prototype.name = 'Alice';
+Person0.prototype.age = 23;
+Person0.prototype.setName = function(name) {
+    this.name = name;
+}
+//原型模式 生成的所有实例共享属性和方法
+//实例也可以定义自己的属性或方法来覆盖原型上的属性/方法
+
+
+//构造函数和原型链混合模式
+function Person1(name, age) {
+    this.name = name;
+    this.age = age;
+}
+Person1.prototype = {
+    constructor: Person1,
+    setName: function(name) {
+        this.name = name
+    }
+}
+//构造函数模式用于定义实例的属性
+//原型模式用于定义方法，共享的属性
+
+
+// ================================================================
+
+
 // 类数组对象 arguments
 // 将类数组对象转化为数组
 // 
